@@ -1,0 +1,2 @@
+rootProject.name='SisplaceApp'
+include ':app'

@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Sisplce App</string>
+    <string name="empresa">Cuerpo de Agentes de Control Metropolitano Quito</string>
+    <string name="siglas">CACMQ</string>
+    <string name="usuario">Usuario</string>
+    <string name="contrasenia">Contraseña</string>
+    <string name="ingresar">Ingresar</string>
+    <string name="ingreso">Ingreso al Sistema</string>
+    <string name="title_activity_inicio">InicioActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="bienvenido">Bienvenido</string>
+    <string name="agenda">Agenda</string>
+    <string name="informacion">Información</string>
+    <string name="sitios">Sitios</string>
+    <string name="fechas">Fechas</string>
+    <string name="administracion">Administración Zonal</string>
+    <string name="todos">Todos</string>
+    <string name="seleccione">Seleccione la opción de búsqueda</string>
+    <string name="infopersonal">Información Personal</string>
+    <string name="fotografia">Fotografía</string>
+    <string name="visita">Visita los sitios oficiales de la Institución</string>
+
+</resources>

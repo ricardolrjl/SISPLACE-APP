@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#367FA9"
+    android:orientation="vertical"
+    tools:context=".SitiosActivity">
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="140dp"
+        android:layout_height="90dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="280dp"
+        app:srcCompat="@drawable/sello_peq" />
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/visita"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="370dp"
+        android:layout_marginTop="30dp">
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="183dp"
+            android:layout_height="424dp"
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="133dp"
+                android:layout_height="369dp"
+                android:layout_marginLeft="50dp"
+                app:srcCompat="@drawable/metromujer"
+                tools:layout_editor_absoluteX="38dp"
+                tools:layout_editor_absoluteY="1dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="206dp"
+            android:layout_height="429dp"
+            android:layout_marginStart="196dp"
+            android:layout_marginLeft="196dp"
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="@+id/linearLayout"
+            app:layout_constraintTop_toTopOf="@+id/linearLayout">
+
+
+            <ImageButton
+                android:id="@+id/imbBtnFace"
+                android:layout_width="80dp"
+                android:layout_height="90dp"
+                android:layout_marginTop="1dp"
+                android:layout_gravity="center_horizontal"
+                app:srcCompat="@drawable/facebook" />
+
+
+            <ImageButton
+                android:id="@+id/imgBtnTwiter"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="5dp"
+                android:layout_gravity="center_horizontal"
+                app:srcCompat="@drawable/twiter" />
+
+
+            <ImageButton
+                android:id="@+id/imgBtnYoutoube"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="5dp"
+                app:srcCompat="@drawable/youtube" />
+
+            <ImageButton
+                android:id="@+id/imgBtnInfor"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="5dp"
+                app:srcCompat="@drawable/info" />
+
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageButton
+        android:id="@+id/imgBtnInicioSitios"
+        android:layout_width="63dp"
+        android:layout_height="70dp"
+        android:layout_gravity="center_horizontal"
+        app:srcCompat="@drawable/inicio" />
+
+
+</LinearLayout>
