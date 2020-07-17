@@ -34,11 +34,11 @@ public class MainActivity extends AppCompatActivity {
     ArrayAdapter mAdapter;
 
     //SANDRITA
-    //String ws = "http://192.168.100.85/rest/postpostgres.php";
+    String ws = "http://192.168.100.85/rest/postpostgres.php";
     //Victor
     //String ws = "http://192.168.100.26/rest/postpostgres.php";
     //RICARDO
-    String ws = "http://192.168.100.26/rest/postpostgres.php";
+    //String ws = "http://192.168.100.26/rest/postpostgres.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
     public String devuelveClave(String usuario){
         String clave="";
         //SANDRITA
-        //String ws = "http://192.168.100.85/rest/postpostgres.php";
+        String ws = "http://192.168.100.85/rest/postpostgres.php";
         //RICARDO
         //String ws = "http://192.168.100.26/rest/postpostgres.php";
 
@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
 
     public String devuelveNombre(String usuario){
         String nombreUser = "No existe nombre";
-        //String ws = "http://192.168.100.85/rest/postpostgres.php";
+        String ws = "http://192.168.100.85/rest/postpostgres.php";
         StrictMode.ThreadPolicy politica= new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(politica);
         URL url;
