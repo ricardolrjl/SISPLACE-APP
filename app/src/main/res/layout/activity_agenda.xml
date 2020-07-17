@@ -13,7 +13,7 @@
         android:id="@+id/tvUsuario"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="1dp"
+        android:layout_marginTop="10dp"
         android:gravity="center_horizontal"
         android:text="@string/usuario"
         android:textColor="#000000"
@@ -27,6 +27,7 @@
         android:gravity="center_horizontal"
         android:text="@string/seleccione"
         android:textColor="#000000"
+        android:layout_marginTop="10dp"
         android:textSize="18sp"
         android:textStyle="bold" />
 
@@ -128,6 +129,7 @@
         android:layout_width="63dp"
         android:layout_height="70dp"
         android:layout_gravity="center_horizontal"
+        android:onClick="irInicio"
         app:srcCompat="@drawable/inicio" />
 
 </LinearLayout>

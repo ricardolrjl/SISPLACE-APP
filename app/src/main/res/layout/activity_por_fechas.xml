@@ -6,4 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".PorFechasActivity">
 
+    <TextView
+        android:id="@+id/tvUsuario"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:gravity="center_horizontal"
+        android:text="@string/usuario"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/linearLayout" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -30,7 +30,7 @@ public class AgendaActivity extends AppCompatActivity {
         datoRecibir=getIntent().getExtras();
         cedula=datoRecibir.getString("usuario");
         nombreUsuario=datoRecibir.getString("nombre");
-        user.setText(cedula+" "+nombreUsuario);
+        user.setText(nombreUsuario);
     }
 
     public void irInicio(View v){
