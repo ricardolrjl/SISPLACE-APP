@@ -26,8 +26,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+    ///para las variables
     EditText etUsuario,etClave;
     String nombreUsuario;
+    /////
 
     ListView mListView;
     List<String> mLista= new ArrayList<>();
