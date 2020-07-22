@@ -11,6 +11,8 @@ import android.widget.Toast;
 
 public class InformacionActivity extends AppCompatActivity {
     TextView user;
+    Integer idPersonal;
+
     String cedula,nombreUsuario;
 
     Bundle datoRecibir;
@@ -30,13 +32,15 @@ public class InformacionActivity extends AppCompatActivity {
         datoRecibir=getIntent().getExtras();
         cedula=datoRecibir.getString("usuario");
         nombreUsuario=datoRecibir.getString("nombre");
-        user.setText(cedula+" "+nombreUsuario);
+        idPersonal=datoRecibir.getInt("idpersonal");
+        user.setText(nombreUsuario);
     }
 
     public void irInicio(View v){
         Intent intentEnvio= new Intent(InformacionActivity.this, InicioActivity.class);
         intentEnvio.putExtra("usuario",cedula);
         intentEnvio.putExtra("nombre",nombreUsuario);
+        intentEnvio.putExtra("idpersonal",idPersonal);
         startActivity(intentEnvio);
         Toast.makeText(getApplicationContext(),"Ir al Inicio",Toast.LENGTH_SHORT).show();
     }

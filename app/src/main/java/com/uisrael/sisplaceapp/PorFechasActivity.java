@@ -9,6 +9,7 @@ import android.widget.TextView;
 public class PorFechasActivity extends AppCompatActivity {
 
     TextView user;
+    Integer idPersonal;
     String cedula,nombreUsuario;
     Bundle datoRecibir;
     @Override
@@ -27,6 +28,7 @@ public class PorFechasActivity extends AppCompatActivity {
         datoRecibir=getIntent().getExtras();
         cedula=datoRecibir.getString("usuario");
         nombreUsuario=datoRecibir.getString("nombre");
+        idPersonal=datoRecibir.getInt("idpersonal");
         user.setText(nombreUsuario);
     }
 }

@@ -17,7 +17,7 @@
         android:gravity="center_horizontal"
         android:text="@string/usuario"
         android:textColor="#000000"
-        android:textSize="18sp"
+        android:textSize="16sp"
         android:textStyle="bold" />
 
     <TextView
@@ -28,7 +28,7 @@
         android:text="@string/seleccione"
         android:textColor="#000000"
         android:layout_marginTop="10dp"
-        android:textSize="18sp"
+        android:textSize="16sp"
         android:textStyle="bold" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -56,7 +56,7 @@
 
         <LinearLayout
             android:id="@+id/linearLayout2"
-            android:layout_width="206dp"
+            android:layout_width="200dp"
             android:layout_height="429dp"
             android:layout_marginStart="196dp"
             android:layout_marginLeft="196dp"
@@ -69,8 +69,9 @@
                 android:id="@+id/imbBtnFechas"
                 android:layout_width="80dp"
                 android:layout_height="90dp"
-                android:layout_marginTop="10dp"
                 android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:onClick="seleccionFechas"
                 app:srcCompat="@drawable/fechas" />
 
             <TextView
@@ -88,8 +89,9 @@
                 android:id="@+id/imgBtnAdministracion"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:layout_marginTop="20dp"
                 android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:onClick="seleccionAdministracion"
                 app:srcCompat="@drawable/administracion" />
 
             <TextView
@@ -109,6 +111,7 @@
                 android:layout_height="80dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="20dp"
+                android:onClick="seleccionTodos"
                 app:srcCompat="@drawable/todos" />
 
 

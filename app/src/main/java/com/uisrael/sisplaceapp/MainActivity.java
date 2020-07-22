@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     ArrayAdapter mAdapter;
 
     //SANDRITA
-    String ws = "http://192.168.100.85/rest/postpostgres.php";
+    String ws = "http://192.168.100.244/rest/postpostgres.php";
     //Victor
     //String ws = "http://192.168.100.26/rest/postpostgres.php";
     //RICARDO
@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
     public String devuelveClave(String usuario){
         String clave="";
         //SANDRITA
-        String ws = "http://192.168.100.85/rest/postpostgres.php";
+        String ws = "http://192.168.100.244/rest/postmysql.php";
         //RICARDO
         //String ws = "http://192.168.100.26/rest/postpostgres.php";
 
@@ -81,10 +81,10 @@ public class MainActivity extends AppCompatActivity {
 
             for (int i=0; i<array.length(); i++){
                 JSONObject objeto = array.getJSONObject(i);
-                username=objeto.optString("username");
-                if(username.equalsIgnoreCase(usuario)) {
-                    clave = objeto.optString("clave");
-                    nombreUsuario=objeto.optString("nombre");
+                username=objeto.optString("USERNAME");
+                if(username.trim().equalsIgnoreCase(usuario.trim())) {
+                    clave = objeto.optString("CLAVE");
+                    nombreUsuario=objeto.optString("NOMBRE");
                 }
             }
         }
@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
 
     public String devuelveNombre(String usuario){
         String nombreUser = "No existe nombre";
-        String ws = "http://192.168.100.85/rest/postpostgres.php";
+        String ws = "http://192.168.100.244/rest/postmysql.php";
         StrictMode.ThreadPolicy politica= new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(politica);
         URL url;
@@ -127,9 +127,9 @@ public class MainActivity extends AppCompatActivity {
 
             for (int i=0; i<array.length(); i++){
                 JSONObject objeto = array.getJSONObject(i);
-                username=objeto.optString("username");
+                username=objeto.optString("USERNAME");
                 if(username.equalsIgnoreCase(usuario)) {
-                    nombreUser=objeto.optString("nombre");
+                    nombreUser=objeto.optString("NOMBRE");
                 }
             }
         }
