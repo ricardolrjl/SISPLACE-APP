@@ -68,7 +68,7 @@ public class InicioActivity extends AppCompatActivity implements Response.Listen
     }
 
     private void cargarWebService(){
-         String url="http://192.168.100.244/rest/wsJSONConsultarPersonal.php?cedula="+cedula;
+         String url=Utils.DIRECCION_IP+"rest/wsJSONConsultarPersonal.php?cedula="+cedula;
          jsonObjectRequest= new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
              @Override
              public void onResponse(JSONObject response) {
@@ -89,7 +89,7 @@ public class InicioActivity extends AppCompatActivity implements Response.Listen
                  } catch (JSONException e) {
                      e.printStackTrace();
                  }
-                 String urlImagen="http://192.168.100.244/"+personal.getFoto();
+                 String urlImagen=Utils.DIRECCION_IP+personal.getFoto();
                  cargarImagen(urlImagen);
 
              }
@@ -155,7 +155,7 @@ public class InicioActivity extends AppCompatActivity implements Response.Listen
         intentEnvio.putExtra("nombre",nombreUsuario);
         intentEnvio.putExtra("idpersonal",idPersonal);
         startActivity(intentEnvio);
-        Toast.makeText(getApplicationContext(),"Seleccionó Agenda-id"+idPersonal,Toast.LENGTH_SHORT).show();
+       Toast.makeText(getApplicationContext(),"Seleccionó Agenda-id"+idPersonal,Toast.LENGTH_SHORT).show();
     }
 
 

@@ -11,9 +11,11 @@ import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageRequest;
+import com.android.volley.toolbox.Volley;
 
 import java.util.List;
 
@@ -23,14 +25,14 @@ import entidades.VolleySingleton;
 public class EventosImagenUrlAdapter extends RecyclerView.Adapter<EventosImagenUrlAdapter.EventosHolder>{
 
     List<Evento> listaEventos;
-  //  RequestQueue request;
+    RequestQueue request;
     Context context;
 
 
     public EventosImagenUrlAdapter(List<Evento> listaEventos, Context context) {
         this.listaEventos = listaEventos;
         this.context=context;
-      //  request= Volley.newRequestQueue(context);
+        request= Volley.newRequestQueue(context);
     }
 
     @Override
@@ -61,7 +63,7 @@ public class EventosImagenUrlAdapter extends RecyclerView.Adapter<EventosImagenU
 
     private void cargarImagenWebService(String rutaImagen, final EventosHolder holder) {
 
-        String urlImagen="http://192.168.100.244/"+rutaImagen;
+        String urlImagen=Utils.DIRECCION_IP+rutaImagen;
         urlImagen=urlImagen.replace(" ","%20");
 
         ImageRequest imageRequest=new ImageRequest(urlImagen, new Response.Listener<Bitmap>() {
@@ -75,8 +77,8 @@ public class EventosImagenUrlAdapter extends RecyclerView.Adapter<EventosImagenU
                 Toast.makeText(context,"Error al cargar la imagen",Toast.LENGTH_SHORT).show();
             }
         });
-        //request.add(imageRequest);
-        VolleySingleton.getIntanciaVolley(context).addToRequestQueue(imageRequest);
+        request.add(imageRequest);
+      //  VolleySingleton.getIntanciaVolley(context).addToRequestQueue(imageRequest);
     }
 
     @Override
@@ -97,7 +99,7 @@ public class EventosImagenUrlAdapter extends RecyclerView.Adapter<EventosImagenU
             txtHora=(TextView) itemView.findViewById(R.id.idHora);
             txtResponsable=(TextView) itemView.findViewById(R.id.idResponsable);
             txtCelular=(TextView) itemView.findViewById(R.id.idCelular);
-            imagen=(ImageView) itemView.findViewById(R.id.idImagen);
+            imagen=(ImageView) itemView.findViewById(R.id.idImagenEvento);
         }
     }
 }

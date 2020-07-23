@@ -15,20 +15,28 @@
         android:gravity="center_horizontal"
         android:text="@string/usuario"
         android:textColor="#000000"
-        android:textSize="18sp"
+        android:textSize="16sp"
         android:textStyle="bold" />
+    <ImageView
+        android:id="@+id/imagenIdAdmin"
+        android:layout_width="100dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="5dp"
+        android:src="@drawable/usuarioblue"
+        android:layout_gravity="center_horizontal"/>
 
-    <TextView
-        android:id="@+id/tvAdmin"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/idRecyclerAdmPersonal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:gravity="center_horizontal"
-        android:text="@string/administracion"
-        android:textColor="#000000"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+        android:layout_height="wrap_content" />
 
 
 
+    <ImageButton
+        android:id="@+id/imgBtnInicio"
+        android:layout_width="63dp"
+        android:layout_height="70dp"
+        android:layout_gravity="center_horizontal"
+        android:onClick="irInicio"
+        app:srcCompat="@drawable/inicio" />
 </LinearLayout>

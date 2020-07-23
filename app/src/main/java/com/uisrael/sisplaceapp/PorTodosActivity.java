@@ -15,9 +15,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -28,11 +30,12 @@ import java.util.ArrayList;
 import entidades.Evento;
 import entidades.VolleySingleton;
 
-public class PorTodosActivity extends AppCompatActivity implements Response.Listener<JSONObject>,Response.ErrorListener{
+public class PorTodosActivity extends AppCompatActivity implements Response.Listener<JSONObject>,Response.ErrorListener {
 
     RecyclerView recyclerEventos;
     ArrayList<Evento> listaEventos;
-    // RequestQueue request;
+    RequestQueue requestQueue;
+    RequestQueue request;
     JsonObjectRequest jsonObjectRequest;
 
     TextView user;
@@ -47,13 +50,13 @@ public class PorTodosActivity extends AppCompatActivity implements Response.List
         actionBar.setIcon(R.mipmap.ic_logo_launcher);
         actionBar.setDisplayShowHomeEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
+
         listaEventos=new ArrayList<>();
-
         recyclerEventos = findViewById(R.id.idRecyclerImagen);
-        recyclerEventos.setLayoutManager(new LinearLayoutManager(this.getApplicationContext()));
+     //   recyclerEventos.setLayoutManager(new LinearLayoutManager(this.getApplicationContext()));
+        recyclerEventos.setLayoutManager(new GridLayoutManager(this,2));
         recyclerEventos.setHasFixedSize(true);
-
-        // request= Volley.newRequestQueue(getContext());
+        request= Volley.newRequestQueue(getApplicationContext());
 
         cargarWebService();
 
@@ -75,8 +78,8 @@ public class PorTodosActivity extends AppCompatActivity implements Response.List
 
     @Override
     public void onResponse(JSONObject response) {
-        Evento evento=null;
-
+        Evento evento=new Evento();
+        Toast.makeText(getApplicationContext(), "Esty en response ", Toast.LENGTH_LONG).show();
         JSONArray json=response.optJSONArray("eventos");
 
         try {
@@ -85,7 +88,6 @@ public class PorTodosActivity extends AppCompatActivity implements Response.List
                 evento=new Evento();
                 JSONObject jsonObject=null;
                 jsonObject=json.getJSONObject(i);
-
                 evento.setIdEvento(jsonObject.optInt("ID_EVENTO"));
                 evento.setDescripcion(jsonObject.optString("DESCRIPCION"));
                 evento.setDireccion(jsonObject.optString("DIRECCION"));
@@ -112,10 +114,12 @@ public class PorTodosActivity extends AppCompatActivity implements Response.List
     }
 
     private void cargarWebService() {
-        String url="http://192.168.100.244/rest/wsJSONEventosTodosPersonal.php?cedula="+cedula;
+        String url=Utils.DIRECCION_IP+"rest/wsJSONEventosTodosPersonal.php?cedula="+cedula;
         jsonObjectRequest=new JsonObjectRequest(Request.Method.GET,url,null,this,this);
-        // request.add(jsonObjectRequest);
-        VolleySingleton.getIntanciaVolley(getApplicationContext()).addToRequestQueue(jsonObjectRequest);
+        request.add(jsonObjectRequest);
+
+        //VolleySingleton.getIntanciaVolley(getApplicationContext()).addToRequestQueue(jsonObjectRequest);
+
     }
 
     public void irInicio(View v){

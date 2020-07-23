@@ -33,7 +33,7 @@ public class AgendaActivity extends AppCompatActivity {
         nombreUsuario=datoRecibir.getString("nombre");
         idPersonal=datoRecibir.getInt("idpersonal");
         user.setText(nombreUsuario);
-        Toast.makeText(getApplicationContext(),"Idpersonal:"+idPersonal.toString(),Toast.LENGTH_SHORT).show();
+      //  Toast.makeText(getApplicationContext(),"Idpersonal:"+idPersonal.toString(),Toast.LENGTH_SHORT).show();
     }
 
     public void seleccionFechas(View v){

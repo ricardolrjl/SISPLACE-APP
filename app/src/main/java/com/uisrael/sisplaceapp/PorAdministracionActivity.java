@@ -2,6 +2,7 @@ package com.uisrael.sisplaceapp;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -40,7 +41,6 @@ public class PorAdministracionActivity extends AppCompatActivity implements Resp
     RecyclerView recyclerAdministracion;
     ArrayList<Administracion> listaAdministracion;
     RequestQueue requestQueue;
-
     RequestQueue request;
     JsonObjectRequest jsonObjectRequest;
 
@@ -58,6 +58,7 @@ public class PorAdministracionActivity extends AppCompatActivity implements Resp
         listaAdministracion=new ArrayList<>();
         recyclerAdministracion=findViewById(R.id.idRecyclerImagenAd);
         recyclerAdministracion.setLayoutManager(new LinearLayoutManager(this.getApplicationContext()));
+    //    recyclerAdministracion.setLayoutManager(new GridLayoutManager(this,2));
         recyclerAdministracion.setHasFixedSize(true);
         request=Volley.newRequestQueue(getApplicationContext());
 
@@ -67,7 +68,7 @@ public class PorAdministracionActivity extends AppCompatActivity implements Resp
         idPersonal=datoRecibir.getInt("idpersonal");
 
         user.setText(nombreUsuario);
-        Toast.makeText(getApplicationContext(),"Idpersonal "+idPersonal.toString(),Toast.LENGTH_SHORT).show();
+    //    Toast.makeText(getApplicationContext(),"Idpersonal "+idPersonal.toString(),Toast.LENGTH_SHORT).show();
 
         cargarWebService();
 
@@ -75,7 +76,7 @@ public class PorAdministracionActivity extends AppCompatActivity implements Resp
     }
 
     private void cargarWebService() {
-        String url="http://192.168.100.244/rest/wsJSONListaAdministracion.php";
+        String url=Utils.DIRECCION_IP+"rest/wsJSONListaAdministracion.php";
         jsonObjectRequest=new JsonObjectRequest(Request.Method.GET,url,null,this,this);
         request.add(jsonObjectRequest);
     }
@@ -103,8 +104,17 @@ public class PorAdministracionActivity extends AppCompatActivity implements Resp
                 administracion.setLogo(jsonObject.optString("LOGO"));
                 listaAdministracion.add(administracion);
             }
-            AdministracionAdapter adapter=new AdministracionAdapter(listaAdministracion);
+            AdministracionAdapter adapter=new AdministracionAdapter(listaAdministracion,getApplicationContext());
+            adapter.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Toast.makeText(getApplicationContext(), "Seleccionó "+listaAdministracion.get(recyclerAdministracion.getChildAdapterPosition(view)).getNombre(), Toast.LENGTH_SHORT).show();
+                    seleccionAdministracion(listaAdministracion.get(recyclerAdministracion.getChildAdapterPosition(view)).getNombre(),listaAdministracion.get(recyclerAdministracion.getChildAdapterPosition(view)).getId_administracion_zonal(),listaAdministracion.get(recyclerAdministracion.getChildAdapterPosition(view)).getLogo());
+                }
+            });
+
             recyclerAdministracion.setAdapter(adapter);
+
             } catch (JSONException e) {
                 e.printStackTrace();
             Toast.makeText(getApplicationContext(), "No se ha podido establecer conexion con el servidor"+" "+response, Toast.LENGTH_LONG).show();
@@ -112,11 +122,10 @@ public class PorAdministracionActivity extends AppCompatActivity implements Resp
         }
     }
 
-    public void seleccionQuitumbe(View v){
+    public void seleccionAdministracion(String nombreAdmin,int idadministracion,String rutalogo){
         Intent intentEnvio= new Intent(PorAdministracionActivity.this, AdminPersonalActivity.class);
         intentEnvio.putExtra("usuario",cedula);
         intentEnvio.putExtra("nombre",nombreUsuario);
-        devuelveAdministracion("QUITUMBE");
         intentEnvio.putExtra("idadministracion",idadministracion);
         intentEnvio.putExtra("administracion",nombreAdmin);
         intentEnvio.putExtra("logo",rutalogo);
@@ -126,7 +135,7 @@ public class PorAdministracionActivity extends AppCompatActivity implements Resp
     }
 
     private void devuelveAdministracion(String nombre){
-        String url="http://192.168.100.244/rest/wsJSONAdminNombre.php?nombre="+nombre;
+        String url=Utils.DIRECCION_IP+"rest/wsJSONAdminNombre.php?nombre="+nombre;
         final Administracion administracion= new Administracion();
         jsonObjectRequest= new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
