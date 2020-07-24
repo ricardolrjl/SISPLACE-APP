@@ -68,7 +68,6 @@ public class PorAdministracionActivity extends AppCompatActivity implements Resp
         idPersonal=datoRecibir.getInt("idpersonal");
 
         user.setText(nombreUsuario);
-    //    Toast.makeText(getApplicationContext(),"Idpersonal "+idPersonal.toString(),Toast.LENGTH_SHORT).show();
 
         cargarWebService();
 
@@ -108,7 +107,7 @@ public class PorAdministracionActivity extends AppCompatActivity implements Resp
             adapter.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Toast.makeText(getApplicationContext(), "Seleccionó "+listaAdministracion.get(recyclerAdministracion.getChildAdapterPosition(view)).getNombre(), Toast.LENGTH_SHORT).show();
+                  //  Toast.makeText(getApplicationContext(), "Seleccionó "+listaAdministracion.get(recyclerAdministracion.getChildAdapterPosition(view)).getNombre(), Toast.LENGTH_SHORT).show();
                     seleccionAdministracion(listaAdministracion.get(recyclerAdministracion.getChildAdapterPosition(view)).getNombre(),listaAdministracion.get(recyclerAdministracion.getChildAdapterPosition(view)).getId_administracion_zonal(),listaAdministracion.get(recyclerAdministracion.getChildAdapterPosition(view)).getLogo());
                 }
             });
@@ -131,7 +130,7 @@ public class PorAdministracionActivity extends AppCompatActivity implements Resp
         intentEnvio.putExtra("logo",rutalogo);
         intentEnvio.putExtra("idpersonal",idPersonal);
         startActivity(intentEnvio);
-        Toast.makeText(getApplicationContext(),"Seleccionó "+nombreAdmin,Toast.LENGTH_SHORT).show();
+
     }
 
     private void devuelveAdministracion(String nombre){
@@ -151,7 +150,7 @@ public class PorAdministracionActivity extends AppCompatActivity implements Resp
                     nombreAdmin=administracion.getNombre();
                     rutalogo=administracion.getLogo();
                     idadministracion=administracion.getId_administracion_zonal();
-                    Toast.makeText(getApplicationContext(),"Seleccionó :"+nombreAdmin+"-"+rutalogo+"-"+idadministracion,Toast.LENGTH_SHORT).show();
+
                  } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -174,7 +173,6 @@ public class PorAdministracionActivity extends AppCompatActivity implements Resp
         intentEnvio.putExtra("nombre",nombreUsuario);
         intentEnvio.putExtra("idpersonal",idPersonal);
         startActivity(intentEnvio);
-        Toast.makeText(getApplicationContext(),"Ir a Agenda",Toast.LENGTH_SHORT).show();
     }
 
 

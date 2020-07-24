@@ -60,7 +60,7 @@ public class SitiosActivity extends AppCompatActivity {
         intentEnvio.putExtra("nombre",nombreUsuario);
         intentEnvio.putExtra("idpersonal",idPersonal);
         startActivity(intentEnvio);
-        Toast.makeText(getApplicationContext(),"Ir al Inicio",Toast.LENGTH_SHORT).show();
+   //     Toast.makeText(getApplicationContext(),"Ir al Inicio",Toast.LENGTH_SHORT).show();
     }
 
 

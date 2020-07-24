@@ -51,7 +51,8 @@ public class AdministracionPersonalAdapter extends RecyclerView.Adapter<Administ
         holder.txtIdEvento.setText(listaEventos.get(position).getIdEvento().toString());
         holder.txtDescripcion.setText(listaEventos.get(position).getDescripcion().toString());
         holder.txtDireccion.setText(listaEventos.get(position).getDireccion().toString());
-        holder.txtFechaHora.setText(listaEventos.get(position).getFecha().toString()+" - "+listaEventos.get(position).getHora().toString());
+        holder.txtFechaHora.setText(listaEventos.get(position).getFecha().toString());
+        holder.txtHora.setText(listaEventos.get(position).getHora().toString());
         holder.txtResponsable.setText(listaEventos.get(position).getResponsable().toString());
         holder.txtTelefonos.setText(listaEventos.get(position).getTelefono().toString()+" - "+listaEventos.get(position).getCelular().toString());
 
@@ -95,7 +96,7 @@ public class AdministracionPersonalAdapter extends RecyclerView.Adapter<Administ
 
     public class AdministracionPersonalHolder extends RecyclerView.ViewHolder{
 
-        TextView txtIdEvento,txtDescripcion,txtDireccion,txtFechaHora,txtResponsable,txtTelefonos;
+        TextView txtIdEvento,txtDescripcion,txtDireccion,txtFechaHora,txtResponsable,txtTelefonos,txtHora;
 
         public AdministracionPersonalHolder(View itemView) {
             super(itemView);
@@ -104,6 +105,8 @@ public class AdministracionPersonalAdapter extends RecyclerView.Adapter<Administ
             txtDireccion= (TextView) itemView.findViewById(R.id.txtDireccion);
            // imagen=(ImageView) itemView.findViewById(R.id.idImagenAdmin);
             txtFechaHora= (TextView) itemView.findViewById(R.id.txtFechaHora);
+            txtHora= (TextView) itemView.findViewById(R.id.txtHora);
+
             txtResponsable= (TextView) itemView.findViewById(R.id.txtResponsable);
             txtTelefonos= (TextView) itemView.findViewById(R.id.txtTelefonos);
         }

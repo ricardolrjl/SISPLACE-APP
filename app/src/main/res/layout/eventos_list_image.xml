@@ -21,6 +21,13 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <TextView
+                android:id="@+id/idEvento"
+                android:layout_marginTop="3dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="idEvento" />
+
               <TextView
                 android:id="@+id/idDescripcion"
                 android:layout_marginTop="3dp"
@@ -53,10 +60,10 @@
                 android:layout_marginTop="3dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Responsable" />
+                android:text="Contacto" />
 
             <TextView
-                android:id="@+id/idCelular"
+                android:id="@+id/idTelefonos"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Celular "

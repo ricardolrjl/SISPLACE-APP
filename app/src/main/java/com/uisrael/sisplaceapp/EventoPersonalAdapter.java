@@ -20,50 +20,53 @@ import com.android.volley.toolbox.Volley;
 import java.util.List;
 
 import entidades.Evento;
-import entidades.VolleySingleton;
 
-public class EventosImagenUrlAdapter extends RecyclerView.Adapter<EventosImagenUrlAdapter.EventosHolder>{
+public class EventoPersonalAdapter extends RecyclerView.Adapter<EventoPersonalAdapter.EventoPersonalHolder> implements  View.OnClickListener{
 
     List<Evento> listaEventos;
     RequestQueue request;
     Context context;
+    private View.OnClickListener listener;
 
-
-    public EventosImagenUrlAdapter(List<Evento> listaEventos, Context context) {
+    public EventoPersonalAdapter(List<Evento> listaEventos, Context context) {
         this.listaEventos = listaEventos;
-        this.context=context;
+        this.context = context;
         request= Volley.newRequestQueue(context);
     }
 
     @Override
-    public EventosHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public EventoPersonalHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View vista= LayoutInflater.from(parent.getContext()).inflate(R.layout.eventos_list_image,parent,false);
         RecyclerView.LayoutParams layoutParams=new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT);
         vista.setLayoutParams(layoutParams);
-        return new EventosHolder(vista);
+        vista.setOnClickListener(this);
+        return new EventoPersonalHolder(vista);
     }
 
+
     @Override
-    public void onBindViewHolder(EventosHolder holder, int position) {
+    public void onBindViewHolder(EventoPersonalHolder holder, int position) {
+        holder.txtIdEvento.setText(listaEventos.get(position).getIdEvento().toString());
         holder.txtDescripcion.setText(listaEventos.get(position).getDescripcion().toString());
         holder.txtDireccion.setText(listaEventos.get(position).getDireccion().toString());
-        holder.txtFecha.setText(listaEventos.get(position).getFecha().toString());
+        holder.txtFechaHora.setText(listaEventos.get(position).getFecha().toString());
         holder.txtHora.setText(listaEventos.get(position).getHora().toString());
         holder.txtResponsable.setText(listaEventos.get(position).getResponsable().toString());
-        holder.txtCelular.setText(listaEventos.get(position).getCelular().toString());
-
+        holder.txtTelefonos.setText(listaEventos.get(position).getTelefono().toString()+" - "+listaEventos.get(position).getCelular().toString());
         if (listaEventos.get(position).getRutaLogo()!=null){
-           //
+            //
             cargarImagenWebService(listaEventos.get(position).getRutaLogo(),holder);
         }else{
             holder.imagen.setImageResource(R.drawable.usuarioblue);
         }
+
+        
     }
 
-    private void cargarImagenWebService(String rutaImagen, final EventosHolder holder) {
+    private void cargarImagenWebService(String logo, final EventoPersonalHolder holder) {
 
-        String urlImagen=Utils.DIRECCION_IP+rutaImagen;
+        String urlImagen=Utils.DIRECCION_IP+logo;
         urlImagen=urlImagen.replace(" ","%20");
 
         ImageRequest imageRequest=new ImageRequest(urlImagen, new Response.Listener<Bitmap>() {
@@ -78,7 +81,6 @@ public class EventosImagenUrlAdapter extends RecyclerView.Adapter<EventosImagenU
             }
         });
         request.add(imageRequest);
-      //  VolleySingleton.getIntanciaVolley(context).addToRequestQueue(imageRequest);
     }
 
     @Override
@@ -86,20 +88,32 @@ public class EventosImagenUrlAdapter extends RecyclerView.Adapter<EventosImagenU
         return listaEventos.size();
     }
 
-    public class EventosHolder extends RecyclerView.ViewHolder{
+    public void setOnClickListener(View.OnClickListener listener){
+        this.listener=listener;
+    }
 
-        TextView txtIdEvento,txtDescripcion,txtDireccion,txtFecha,txtHora,txtResponsable,txtCelular;
+    @Override
+    public void onClick(View view) {
+        if(listener!=null){
+            listener.onClick(view);
+        }
+    }
+
+    public class EventoPersonalHolder extends RecyclerView.ViewHolder{
+
+        TextView txtIdEvento,txtDescripcion,txtDireccion,txtFechaHora,txtResponsable,txtTelefonos,txtHora;
         ImageView imagen;
 
-        public EventosHolder(View itemView) {
+        public EventoPersonalHolder(View itemView) {
             super(itemView);
+            txtIdEvento= (TextView) itemView.findViewById(R.id.idEvento);
             txtDescripcion= (TextView) itemView.findViewById(R.id.idDescripcion);
             txtDireccion= (TextView) itemView.findViewById(R.id.idDireccion);
-            txtFecha= (TextView) itemView.findViewById(R.id.idFecha);
-            txtHora=(TextView) itemView.findViewById(R.id.idHora);
-            txtResponsable=(TextView) itemView.findViewById(R.id.idResponsable);
-            txtCelular=(TextView) itemView.findViewById(R.id.idTelefonos);
             imagen=(ImageView) itemView.findViewById(R.id.idImagenEvento);
+            txtFechaHora= (TextView) itemView.findViewById(R.id.idFecha);
+            txtHora= (TextView) itemView.findViewById(R.id.idHora);
+            txtResponsable= (TextView) itemView.findViewById(R.id.idResponsable);
+            txtTelefonos= (TextView) itemView.findViewById(R.id.idTelefonos);
         }
     }
 }

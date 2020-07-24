@@ -42,7 +42,7 @@ public class AgendaActivity extends AppCompatActivity {
         intentEnvio.putExtra("nombre",nombreUsuario);
         intentEnvio.putExtra("idpersonal",idPersonal);
         startActivity(intentEnvio);
-        Toast.makeText(getApplicationContext(),"Seleccionó Fechas",Toast.LENGTH_SHORT).show();
+   //     Toast.makeText(getApplicationContext(),"Seleccionó Fechas",Toast.LENGTH_SHORT).show();
     }
 
     public void seleccionAdministracion(View v){
@@ -51,7 +51,7 @@ public class AgendaActivity extends AppCompatActivity {
         intentEnvio.putExtra("nombre",nombreUsuario);
         intentEnvio.putExtra("idpersonal",idPersonal);
         startActivity(intentEnvio);
-        Toast.makeText(getApplicationContext(),"Seleccionó Administracion-idP"+idPersonal.toString(),Toast.LENGTH_SHORT).show();
+       // Toast.makeText(getApplicationContext(),"Seleccionó Administracion-idP"+idPersonal.toString(),Toast.LENGTH_SHORT).show();
     }
 
     public void seleccionTodos(View v){
@@ -60,7 +60,7 @@ public class AgendaActivity extends AppCompatActivity {
         intentEnvio.putExtra("nombre",nombreUsuario);
         intentEnvio.putExtra("idpersonal",idPersonal);
         startActivity(intentEnvio);
-        Toast.makeText(getApplicationContext(),"Seleccionó Todos",Toast.LENGTH_SHORT).show();
+      //  Toast.makeText(getApplicationContext(),"Seleccionó Todos",Toast.LENGTH_SHORT).show();
     }
     public void irInicio(View v){
         Intent intentEnvio= new Intent(AgendaActivity.this, InicioActivity.class);
@@ -68,6 +68,6 @@ public class AgendaActivity extends AppCompatActivity {
         intentEnvio.putExtra("nombre",nombreUsuario);
         intentEnvio.putExtra("idpersonal",idPersonal);
         startActivity(intentEnvio);
-        Toast.makeText(getApplicationContext(),"Ir al Inicio",Toast.LENGTH_SHORT).show();
+      //  Toast.makeText(getApplicationContext(),"Ir al Inicio",Toast.LENGTH_SHORT).show();
     }
 }

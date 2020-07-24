@@ -35,7 +35,7 @@ import entidades.Personal;
 public class AdminPersonalActivity extends AppCompatActivity implements Response.Listener<JSONObject>,Response.ErrorListener  {
     TextView user,viewAdministracion;
     Integer idAdministracion;
-    Integer idPersonal;
+    Integer idPersonal,idEvento;
     String cedula,nombreUsuario,administracion,rutalogo;
     Bundle datoRecibir;
     ImageView campoImagen;
@@ -66,12 +66,9 @@ public class AdminPersonalActivity extends AppCompatActivity implements Response
         idPersonal=datoRecibir.getInt("idpersonal");
 
         user.setText(nombreUsuario);
-        Toast.makeText(getApplicationContext(), "idpersona"+idPersonal, Toast.LENGTH_LONG).show();
-        viewAdministracion.setText(administracion);
 
         String urlImagen=Utils.DIRECCION_IP+rutalogo;
-        Toast.makeText(getApplicationContext(), "Url logo:"+urlImagen+"-"+administracion+"-"+idPersonal.toString()+"-"+idAdministracion.toString(), Toast.LENGTH_LONG).show();
-   //     request= Volley.newRequestQueue(getApplicationContext());
+
         listaEventos=new ArrayList<>();
         recyclerAdministracionPersonal=findViewById(R.id.idRecyclerAdmPersonal);
         recyclerAdministracionPersonal.setLayoutManager(new LinearLayoutManager(this.getApplicationContext()));
@@ -84,7 +81,7 @@ public class AdminPersonalActivity extends AppCompatActivity implements Response
     }
 
     private void cargarWebService() {
-        String url=Utils.DIRECCION_IP+"rest/wsJSONListaAdministracion.php";
+        String url=Utils.DIRECCION_IP+"rest/wsJSONEventosAdminPersonal.php?cedula="+cedula+"&idadministracion="+idAdministracion.toString();
         jsonObjectRequest=new JsonObjectRequest(Request.Method.GET,url,null,this,this);
         request.add(jsonObjectRequest);
     }
@@ -111,7 +108,7 @@ public class AdminPersonalActivity extends AppCompatActivity implements Response
         intentEnvio.putExtra("nombre",nombreUsuario);
         intentEnvio.putExtra("idpersonal",idPersonal);
         startActivity(intentEnvio);
-        Toast.makeText(getApplicationContext(),"Ir a Administracion",Toast.LENGTH_SHORT).show();
+      //  Toast.makeText(getApplicationContext(),"Ir a Administracion",Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -124,30 +121,30 @@ public class AdminPersonalActivity extends AppCompatActivity implements Response
     @Override
     public void onResponse(JSONObject response) {
         Evento evento= new Evento();
-        JSONArray json=response.optJSONArray("evento");
+        JSONArray json=response.optJSONArray("administracion");
         try {
             for (int i=0;i<json.length();i++){
                 evento= new Evento();
                 JSONObject jsonObject=null;
                 jsonObject=json.getJSONObject(i);
-                evento.setIdEvento(jsonObject.optInt("ID_ADMINISTRACION_ZONAL"));
-                evento.setDescripcion(jsonObject.optString("NOMBRE"));
-                evento.setDireccion(jsonObject.optString("LOGO"));
-                evento.setFecha(jsonObject.optString("LOGO"));
-                evento.setHora(jsonObject.optString("LOGO"));
-                evento.setResponsable(jsonObject.optString("LOGO"));
-                evento.setTelefono(jsonObject.optString("LOGO"));
-                evento.setCelular(jsonObject.optString("LOGO"));
-                evento.setLatitud(jsonObject.optDouble("LOGO"));
-                evento.setLongitud(jsonObject.optDouble("LOGO"));
+                evento.setIdEvento(jsonObject.optInt("ID_EVENTO"));
+                evento.setDescripcion(jsonObject.optString("DESCRIPCION"));
+                evento.setDireccion(jsonObject.optString("DIRECCION"));
+                evento.setFecha(jsonObject.optString("FECHA"));
+                evento.setHora(jsonObject.optString("HORA"));
+                evento.setResponsable(jsonObject.optString("NOMBRE_RESPONSABLE"));
+                evento.setTelefono(jsonObject.optString("CONVENCIONAL_RESPONSABLE"));
+                evento.setCelular(jsonObject.optString("CELULAR_RESPONSABLE"));
+                evento.setLatitud(jsonObject.optDouble("LATITUD"));
+                evento.setLongitud(jsonObject.optDouble("LONGITUD"));
                 listaEventos.add(evento);
             }
             AdministracionPersonalAdapter adapter=new AdministracionPersonalAdapter(listaEventos,getApplicationContext());
             adapter.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Toast.makeText(getApplicationContext(), "Seleccionó "+listaEventos.get(recyclerAdministracionPersonal.getChildAdapterPosition(view)).getLatitud(), Toast.LENGTH_SHORT).show();
-                    seleccionEvento(listaEventos.get(recyclerAdministracionPersonal.getChildAdapterPosition(view)).getLatitud(),listaEventos.get(recyclerAdministracionPersonal.getChildAdapterPosition(view)).getLongitud());
+                //    Toast.makeText(getApplicationContext(), "Seleccionó "+listaEventos.get(recyclerAdministracionPersonal.getChildAdapterPosition(view)).getLatitud(), Toast.LENGTH_SHORT).show();
+                    seleccionEvento(listaEventos.get(recyclerAdministracionPersonal.getChildAdapterPosition(view)).getDescripcion(),listaEventos.get(recyclerAdministracionPersonal.getChildAdapterPosition(view)).getIdEvento(),listaEventos.get(recyclerAdministracionPersonal.getChildAdapterPosition(view)).getLongitud(),listaEventos.get(recyclerAdministracionPersonal.getChildAdapterPosition(view)).getLatitud());
                 }
             });
 
@@ -160,14 +157,16 @@ public class AdminPersonalActivity extends AppCompatActivity implements Response
         }
     }
 
-    private void seleccionEvento(Double latitud, Double longitud) {
-        Intent intentEnvio= new Intent(AdminPersonalActivity.this, AdminPersonalActivity.class);
+    public void seleccionEvento(String nombreEvento,int idEvento,Double longitud,Double latitud){
+        Intent intentEnvio= new Intent(AdminPersonalActivity.this, UbicacionActivity.class);
         intentEnvio.putExtra("usuario",cedula);
         intentEnvio.putExtra("nombre",nombreUsuario);
+        intentEnvio.putExtra("idevento",idEvento);
+        intentEnvio.putExtra("idpersonal",idPersonal);
+        intentEnvio.putExtra("nombreEvento",nombreEvento);
         intentEnvio.putExtra("longitud",longitud);
         intentEnvio.putExtra("latitud",latitud);
-         intentEnvio.putExtra("idpersonal",idPersonal);
         startActivity(intentEnvio);
-        Toast.makeText(getApplicationContext(),"Seleccionó "+latitud,Toast.LENGTH_SHORT).show();
+      //  Toast.makeText(getApplicationContext(),"Seleccionó "+latitud,Toast.LENGTH_SHORT).show();
     }
 }

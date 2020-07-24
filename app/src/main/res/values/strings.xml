@@ -21,5 +21,12 @@
     <string name="infopersonal">Información Personal</string>
     <string name="fotografia">Fotografía</string>
     <string name="visita">Visita los sitios oficiales de la Institución</string>
+    <string name="fechaNac">Fecha Nacimiento</string>
+    <string name="direccion">Dirección</string>
+    <string name="convencional">Teléfono Convencional</string>
+    <string name="celular">Celular</string>
+    <string name="correo">Correo Electrónico</string>
+    <string name="cedula">Cédula</string>
+    <string name="actualizar">Actualizar</string>
 
 </resources>

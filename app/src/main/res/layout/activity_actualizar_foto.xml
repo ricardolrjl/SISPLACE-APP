@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="#367FA9"
-    tools:context=".PorTodosActivity">
+    android:orientation="vertical"
+    tools:context=".ActualizarFotoActivity">
 
     <TextView
         android:id="@+id/tvUsuario"
@@ -14,15 +14,28 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:gravity="center_horizontal"
-        android:text="@string/usuario"
+        android:text="@string/cedula"
         android:textColor="#000000"
         android:textSize="16sp"
         android:textStyle="bold" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/idRecyclerEventos"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+    <ImageView
+        android:id="@+id/imagenId"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:src="@drawable/img_base"
+        android:layout_above="@+id/linearLayout2"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="12dp" />
+
+    <ImageButton
+        android:id="@+id/imgBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="139dp"
+        android:layout_gravity="center_horizontal"
+        android:onClick="tomarFoto"
+        app:srcCompat="@drawable/camara" />
 
     <ImageButton
         android:id="@+id/imgBtnInicioAgenda"
