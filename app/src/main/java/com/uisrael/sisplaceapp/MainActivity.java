@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     ArrayAdapter mAdapter;
 
     //SANDRITA
-    String ws = "http://192.168.100.244/rest/postpostgres.php";
+    String ws = Utils.DIRECCION_IP+"rest/postpostgres.php";
     //Victor
     //String ws = "http://192.168.100.26/rest/postpostgres.php";
     //RICARDO
@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
     public String devuelveClave(String usuario){
         String clave="";
         //SANDRITA
-        String ws = "http://192.168.100.244/rest/postmysql.php";
+        String ws = Utils.DIRECCION_IP+"rest/postmysql.php";
         //RICARDO
         //String ws = "http://192.168.100.26/rest/postpostgres.php";
 
@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
 
     public String devuelveNombre(String usuario){
         String nombreUser = "No existe nombre";
-        String ws = "http://192.168.100.244/rest/postmysql.php";
+        String ws = Utils.DIRECCION_IP+"rest/postmysql.php";
         StrictMode.ThreadPolicy politica= new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(politica);
         URL url;

@@ -36,12 +36,28 @@ public class InformacionActivity extends AppCompatActivity {
         user.setText(nombreUsuario);
     }
 
+    public void irInformacionPersonal(View v){
+        Intent intentEnvio= new Intent(InformacionActivity.this, InformacionPersonalActivity.class);
+        intentEnvio.putExtra("usuario",cedula);
+        intentEnvio.putExtra("nombre",nombreUsuario);
+        intentEnvio.putExtra("idpersonal",idPersonal);
+        startActivity(intentEnvio);
+    }
+
+    public void irActualizarFoto(View v){
+        Intent intentEnvio= new Intent(InformacionActivity.this, ActualizarFotoActivity.class);
+        intentEnvio.putExtra("usuario",cedula);
+        intentEnvio.putExtra("nombre",nombreUsuario);
+        intentEnvio.putExtra("idpersonal",idPersonal);
+        startActivity(intentEnvio);
+    }
+
     public void irInicio(View v){
         Intent intentEnvio= new Intent(InformacionActivity.this, InicioActivity.class);
         intentEnvio.putExtra("usuario",cedula);
         intentEnvio.putExtra("nombre",nombreUsuario);
         intentEnvio.putExtra("idpersonal",idPersonal);
         startActivity(intentEnvio);
-        Toast.makeText(getApplicationContext(),"Ir al Inicio",Toast.LENGTH_SHORT).show();
+     //   Toast.makeText(getApplicationContext(),"Ir al Inicio",Toast.LENGTH_SHORT).show();
     }
 }

@@ -15,6 +15,7 @@ public class Evento {
     private Double latitud;
     private Double longitud;
     private String rutaLogo;
+    private Integer idAdministracionEvento;
 
     public Integer getIdEvento() {
         return idEvento;
@@ -102,5 +103,13 @@ public class Evento {
 
     public void setRutaLogo(String rutaLogo) {
         this.rutaLogo = rutaLogo;
+    }
+
+    public Integer getIdAdministracionEvento() {
+        return idAdministracionEvento;
+    }
+
+    public void setIdAdministracionEvento(Integer idAdministracionEvento) {
+        this.idAdministracionEvento = idAdministracionEvento;
     }
 }

@@ -20,11 +20,20 @@
         android:textStyle="bold" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/idRecyclerImagen"
+        android:id="@+id/idRecyclerEventos"
         android:layout_width="match_parent"
-        android:layout_height="523dp" />
+        android:layout_height="wrap_content" />
 
-
-
+    <ImageButton
+        android:id="@+id/imgBtnInicioAgenda"
+        android:layout_width="89dp"
+        android:layout_height="72dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="80dp"
+        android:onClick="irInicio"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/inicio" />
 
 </LinearLayout>
