@@ -18,6 +18,7 @@ public class SitiosActivity extends AppCompatActivity {
     TextView user;
     String cedula,nombreUsuario;
     Bundle datoRecibir;
+    Integer idPersonal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +37,7 @@ public class SitiosActivity extends AppCompatActivity {
         datoRecibir=getIntent().getExtras();
         cedula=datoRecibir.getString("usuario");
         nombreUsuario=datoRecibir.getString("nombre");
+        idPersonal=datoRecibir.getInt("idpersonal");
         user.setText(nombreUsuario);
     }
 
@@ -56,6 +58,7 @@ public class SitiosActivity extends AppCompatActivity {
         Intent intentEnvio= new Intent(SitiosActivity.this, InicioActivity.class);
         intentEnvio.putExtra("usuario",cedula);
         intentEnvio.putExtra("nombre",nombreUsuario);
+        intentEnvio.putExtra("idpersonal",idPersonal);
         startActivity(intentEnvio);
         Toast.makeText(getApplicationContext(),"Ir al Inicio",Toast.LENGTH_SHORT).show();
     }

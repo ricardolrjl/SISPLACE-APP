@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 public class AgendaActivity extends AppCompatActivity {
     TextView user;
+    Integer idPersonal;
     String cedula,nombreUsuario;
     Bundle datoRecibir;
 
@@ -30,13 +31,42 @@ public class AgendaActivity extends AppCompatActivity {
         datoRecibir=getIntent().getExtras();
         cedula=datoRecibir.getString("usuario");
         nombreUsuario=datoRecibir.getString("nombre");
+        idPersonal=datoRecibir.getInt("idpersonal");
         user.setText(nombreUsuario);
+        Toast.makeText(getApplicationContext(),"Idpersonal:"+idPersonal.toString(),Toast.LENGTH_SHORT).show();
     }
 
+    public void seleccionFechas(View v){
+        Intent intentEnvio= new Intent(AgendaActivity.this, PorFechasActivity.class);
+        intentEnvio.putExtra("usuario",cedula);
+        intentEnvio.putExtra("nombre",nombreUsuario);
+        intentEnvio.putExtra("idpersonal",idPersonal);
+        startActivity(intentEnvio);
+        Toast.makeText(getApplicationContext(),"Seleccionó Fechas",Toast.LENGTH_SHORT).show();
+    }
+
+    public void seleccionAdministracion(View v){
+        Intent intentEnvio= new Intent(AgendaActivity.this, PorAdministracionActivity.class);
+        intentEnvio.putExtra("usuario",cedula);
+        intentEnvio.putExtra("nombre",nombreUsuario);
+        intentEnvio.putExtra("idpersonal",idPersonal);
+        startActivity(intentEnvio);
+        Toast.makeText(getApplicationContext(),"Seleccionó Administracion-idP"+idPersonal.toString(),Toast.LENGTH_SHORT).show();
+    }
+
+    public void seleccionTodos(View v){
+        Intent intentEnvio= new Intent(AgendaActivity.this, PorTodosActivity.class);
+        intentEnvio.putExtra("usuario",cedula);
+        intentEnvio.putExtra("nombre",nombreUsuario);
+        intentEnvio.putExtra("idpersonal",idPersonal);
+        startActivity(intentEnvio);
+        Toast.makeText(getApplicationContext(),"Seleccionó Todos",Toast.LENGTH_SHORT).show();
+    }
     public void irInicio(View v){
         Intent intentEnvio= new Intent(AgendaActivity.this, InicioActivity.class);
         intentEnvio.putExtra("usuario",cedula);
         intentEnvio.putExtra("nombre",nombreUsuario);
+        intentEnvio.putExtra("idpersonal",idPersonal);
         startActivity(intentEnvio);
         Toast.makeText(getApplicationContext(),"Ir al Inicio",Toast.LENGTH_SHORT).show();
     }

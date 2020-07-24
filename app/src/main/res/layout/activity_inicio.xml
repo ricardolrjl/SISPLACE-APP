@@ -17,7 +17,7 @@
         android:layout_marginTop="20dp"
         android:textColor="#000000"
         android:text="@string/bienvenido"
-        android:textSize="18sp"
+        android:textSize="16sp"
         android:textStyle="bold" />
 
     <TextView
@@ -28,20 +28,21 @@
         android:gravity="center_horizontal"
         android:text="@string/usuario"
         android:textColor="#000000"
-        android:textSize="18sp"
+        android:textSize="16sp"
         android:textStyle="bold" />
 
     <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:id="@+id/imagenId"
+        android:layout_width="200dp"
+        android:layout_height="170dp"
         android:layout_marginTop="20dp"
-        app:srcCompat="@drawable/usuarioblue" />
+        android:src="@drawable/usuarioblue"
+        android:layout_gravity="center_horizontal"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="140dp"
-        android:layout_marginTop="30dp">
+        android:layout_marginTop="35dp">
 
         <ImageButton
             android:id="@+id/imgBtnAgenda"

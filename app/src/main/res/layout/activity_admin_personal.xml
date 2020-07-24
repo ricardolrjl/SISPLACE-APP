@@ -4,10 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="#367FA9"
-    tools:context=".PorTodosActivity">
-
+    android:orientation="vertical"
+    tools:context=".AdminPersonalActivity">
     <TextView
         android:id="@+id/tvUsuario"
         android:layout_width="match_parent"
@@ -16,14 +15,19 @@
         android:gravity="center_horizontal"
         android:text="@string/usuario"
         android:textColor="#000000"
-        android:textSize="16sp"
+        android:textSize="18sp"
         android:textStyle="bold" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/idRecyclerImagen"
+    <TextView
+        android:id="@+id/tvAdmin"
         android:layout_width="match_parent"
-        android:layout_height="523dp" />
-
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center_horizontal"
+        android:text="@string/administracion"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
 
 
