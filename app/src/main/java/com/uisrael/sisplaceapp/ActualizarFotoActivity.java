@@ -148,7 +148,7 @@ public class ActualizarFotoActivity extends AppCompatActivity {
 
         }
     }
-/*
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -161,7 +161,7 @@ public class ActualizarFotoActivity extends AppCompatActivity {
             }
         }
     }
-*/
+/*
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -197,7 +197,7 @@ public class ActualizarFotoActivity extends AppCompatActivity {
         }
         bitmap=redimensionarImagen(bitmap,600,800);
     }
-
+*/
     private Bitmap redimensionarImagen(Bitmap bitmap, float anchoNuevo, float altoNuevo) {
 
         int ancho=bitmap.getWidth();

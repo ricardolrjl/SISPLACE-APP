@@ -17,7 +17,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_logo_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
         <activity android:name=".ActualizarFotoActivity"></activity>
         <activity android:name=".InformacionPersonalActivity" />
         <activity android:name=".UbicacionActivity" />
@@ -29,6 +30,7 @@
         <activity android:name=".InformacionActivity" />
         <activity android:name=".AgendaActivity" />
         <activity android:name=".InicioActivity" />
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
