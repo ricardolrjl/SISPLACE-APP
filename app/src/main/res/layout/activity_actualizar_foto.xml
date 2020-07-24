@@ -21,28 +21,45 @@
 
     <ImageView
         android:id="@+id/imagenId"
-        android:layout_width="250dp"
-        android:layout_height="250dp"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
         android:src="@drawable/img_base"
         android:layout_above="@+id/linearLayout2"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="12dp" />
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:orientation="horizontal">
+
 
     <ImageButton
         android:id="@+id/imgBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="139dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="10dp"
         android:layout_gravity="center_horizontal"
-        android:onClick="tomarFoto"
+        android:onClick="tomarFotoTutor"
         app:srcCompat="@drawable/camara" />
+
+    <ImageButton
+        android:id="@+id/imgBtnGuardar"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:onClick="guardarFoto"
+        app:srcCompat="@drawable/guardar" />
+</LinearLayout>
 
     <ImageButton
         android:id="@+id/imgBtnInicioAgenda"
         android:layout_width="89dp"
         android:layout_height="72dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="80dp"
+        android:layout_marginTop="10dp"
         android:onClick="irInicio"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

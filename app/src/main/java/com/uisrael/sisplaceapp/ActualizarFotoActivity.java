@@ -107,6 +107,10 @@ public class ActualizarFotoActivity extends AppCompatActivity {
         }
     }
 
+    public void guardarFoto(View v){
+
+    }
+
     public void tomarFotoTutor(View v){
         File miFile=new File(Environment.getExternalStorageDirectory(),Utils.DIRECTORIO_IMAGEN);
         boolean isCreada=miFile.exists();
@@ -144,7 +148,7 @@ public class ActualizarFotoActivity extends AppCompatActivity {
 
         }
     }
-
+/*
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -157,6 +161,136 @@ public class ActualizarFotoActivity extends AppCompatActivity {
             }
         }
     }
+*/
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+
+        switch (requestCode){
+            case Utils.COD_SELECCIONA:
+                Uri miPath=data.getData();
+                campoImagen.setImageURI(miPath);
+
+                try {
+                    bitmap=MediaStore.Images.Media.getBitmap(getApplication().getContentResolver(),miPath);
+                    campoImagen.setImageBitmap(bitmap);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                break;
+            case Utils.COD_FOTO:
+                MediaScannerConnection.scanFile(getApplicationContext(), new String[]{path}, null,
+                        new MediaScannerConnection.OnScanCompletedListener() {
+                            @Override
+                            public void onScanCompleted(String path, Uri uri) {
+                                Log.i("Path",""+path);
+                            }
+                        });
+
+                bitmap= BitmapFactory.decodeFile(path);
+                campoImagen.setImageBitmap(bitmap);
+
+                break;
+        }
+        bitmap=redimensionarImagen(bitmap,600,800);
+    }
+
+    private Bitmap redimensionarImagen(Bitmap bitmap, float anchoNuevo, float altoNuevo) {
+
+        int ancho=bitmap.getWidth();
+        int alto=bitmap.getHeight();
+
+        if(ancho>anchoNuevo || alto>altoNuevo){
+            float escalaAncho=anchoNuevo/ancho;
+            float escalaAlto= altoNuevo/alto;
+
+            Matrix matrix=new Matrix();
+            matrix.postScale(escalaAncho,escalaAlto);
+
+            return Bitmap.createBitmap(bitmap,0,0,ancho,alto,matrix,false);
+
+        }else{
+            return bitmap;
+        }
+
+    }
+
+    //PERMISOS
+    private boolean solicitaPermisosVersionesSuperiores() {
+        if (Build.VERSION.SDK_INT<Build.VERSION_CODES.M){//validamos si estamos en android menor a 6 para no buscar los permisos
+            return true;
+        }
+
+        //validamos si los permisos ya fueron aceptados
+        if((getApplicationContext().checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)== PackageManager.PERMISSION_GRANTED)&&getApplicationContext().checkSelfPermission(Manifest.permission.CAMERA)==PackageManager.PERMISSION_GRANTED){
+            return true;
+        }
+
+
+        if ((shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)||(shouldShowRequestPermissionRationale(Manifest.permission.CAMERA)))){
+            cargarDialogoRecomendacion();
+        }else{
+            requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA}, Utils.MIS_PERMISOS);
+        }
+
+        return false;//implementamos el que procesa el evento dependiendo de lo que se defina aqui
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode==Utils.MIS_PERMISOS){
+            if(grantResults.length==2 && grantResults[0]==PackageManager.PERMISSION_GRANTED && grantResults[1]==PackageManager.PERMISSION_GRANTED){//el dos representa los 2 permisos
+                Toast.makeText(getApplicationContext(),"Permisos aceptados",Toast.LENGTH_SHORT);
+                campoImagen.setEnabled(true);//se vincula el evento a la imagen
+            }
+        }else{
+            solicitarPermisosManual();
+        }
+    }
+
+
+    private void solicitarPermisosManual() {
+        final CharSequence[] opciones={"si","no"};
+        final AlertDialog.Builder alertOpciones=new AlertDialog.Builder(getApplicationContext());//estamos en fragment
+        alertOpciones.setTitle("¿Desea configurar los permisos de forma manual?");
+        alertOpciones.setItems(opciones, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                if (opciones[i].equals("si")){
+                    Intent intent=new Intent();
+                    intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                    Uri uri=Uri.fromParts("package",getApplicationContext().getPackageName(),null);
+                    intent.setData(uri);
+                    startActivity(intent);
+                }else{
+                    Toast.makeText(getApplicationContext(),"Los permisos no fueron aceptados",Toast.LENGTH_SHORT).show();
+                    dialogInterface.dismiss();
+                }
+            }
+        });
+        alertOpciones.show();
+    }
+
+
+    private void cargarDialogoRecomendacion() {
+        AlertDialog.Builder dialogo=new AlertDialog.Builder(getApplicationContext());
+        dialogo.setTitle("Permisos Desactivados");
+        dialogo.setMessage("Debe aceptar los permisos para el correcto funcionamiento de la App");
+
+        dialogo.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.M)
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.CAMERA},100);
+            }
+        });
+        dialogo.show();
+    }
+
 
     public void irInicio(View v){
         Intent intentEnvio= new Intent(ActualizarFotoActivity.this, InicioActivity.class);
