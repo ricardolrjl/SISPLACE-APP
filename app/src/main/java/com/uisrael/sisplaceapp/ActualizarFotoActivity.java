@@ -108,7 +108,7 @@ public class ActualizarFotoActivity extends AppCompatActivity {
     }
 
     public void guardarFoto(View v){
-
+        Toast.makeText(getApplicationContext(), "Guardar la foto", Toast.LENGTH_SHORT).show();
     }
 
     public void tomarFotoTutor(View v){
