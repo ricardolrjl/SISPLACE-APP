@@ -33,13 +33,6 @@ public class MainActivity extends AppCompatActivity {
     List<String> mLista= new ArrayList<>();
     ArrayAdapter mAdapter;
 
-    //SANDRITA
-    String ws = Utils.DIRECCION_IP+"rest/postpostgres.php";
-    //Victor
-    //String ws = "http://192.168.100.26/rest/postpostgres.php";
-    //RICARDO
-    //String ws = "http://192.168.100.26/rest/postpostgres.php";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
