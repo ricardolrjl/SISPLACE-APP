@@ -2,5 +2,5 @@
 <paths xmlns:android="http://schemas.android.com/apk/res/android">
     <external-path
         name="my_images"
-        path="Android/data/com.uisrael.semana14sandracollaguazo/files/Pictures"/>
+        path="Android/data/com.uisrael.sisplaceapp/files/Pictures"/>
 </paths>

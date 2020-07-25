@@ -43,6 +43,8 @@
             android:name="android.support.PARENT_ACTIVITY"
             android:value=".InicioActivity" />
 
+
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.uisrael.sisplaceapp.fileprovider"
@@ -53,6 +55,7 @@
                 android:resource="@xml/file_path">
             </meta-data>
         </provider>
+
     </application>
 
 

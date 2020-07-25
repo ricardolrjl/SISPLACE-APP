@@ -63,5 +63,40 @@ public class SitiosActivity extends AppCompatActivity {
    //     Toast.makeText(getApplicationContext(),"Ir al Inicio",Toast.LENGTH_SHORT).show();
     }
 
+    public void irYoutube(View v){
+        String YoutubeId = "yt://UCMN0nU_su5u17xqHnhs2JSQ";
+        String urlPage = "https://www.youtube.com/channel/UCUguziC608WwBWWSkcJZX1Q";
 
+        try {
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(YoutubeId)));
+        } catch (Exception e) {
+            Toast.makeText(getApplicationContext(),"Aplicación no instalada",Toast.LENGTH_SHORT).show();
+            //Abre url de pagina.
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(urlPage)));
+        }
+    }
+    public void irTwiter(View v){
+        String TwiterId = "tw://page/235467633241041";
+        String urlPage = "https://twitter.com/agentesdequito?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor";
+
+        try {
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(TwiterId)));
+        } catch (Exception e) {
+            Toast.makeText(getApplicationContext(),"Aplicación no instalada",Toast.LENGTH_SHORT).show();
+            //Abre url de pagina.
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(urlPage)));
+        }
+    }
+    public void irPagina(View v){
+
+        String urlPage = "https://cuerpodeagentesdecontrolquito.gob.ec/";
+
+        try {
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(urlPage)));
+        } catch (Exception e) {
+            Toast.makeText(getApplicationContext(),"Aplicación no instalada",Toast.LENGTH_SHORT).show();
+            //Abre url de pagina.
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(urlPage)));
+        }
+    }
 }

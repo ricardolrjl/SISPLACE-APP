@@ -81,8 +81,9 @@
                 android:id="@+id/imgBtnTwiter"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:layout_marginTop="5dp"
                 android:layout_gravity="center_horizontal"
+                android:layout_marginTop="5dp"
+                android:onClick="irTwiter"
                 app:srcCompat="@drawable/twiter" />
 
 
@@ -92,6 +93,7 @@
                 android:layout_height="80dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="5dp"
+                android:onClick="irYoutube"
                 app:srcCompat="@drawable/youtube" />
 
             <ImageButton
@@ -100,6 +102,7 @@
                 android:layout_height="80dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="5dp"
+                android:onClick="irPagina"
                 app:srcCompat="@drawable/info" />
 
         </LinearLayout>

@@ -32,7 +32,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -49,8 +53,10 @@ public class ActualizarFotoActivity extends AppCompatActivity {
     ImageButton btnActualizar;
     ImageView campoImagen;
     Bitmap bitmap;
-    String mCurrentPhotoPath;
-    static final int REQUEST_TAKE_PHOTO = 1;
+
+
+   // String mCurrentPhotoPath;
+   // static final int REQUEST_TAKE_PHOTO = 1;
 
 
     @Override
@@ -76,27 +82,54 @@ public class ActualizarFotoActivity extends AppCompatActivity {
 
     }
 
-    private File createImageFile() throws IOException{
+   public void irInicio(View v){
+        Intent intentEnvio= new Intent(ActualizarFotoActivity.this, InicioActivity.class);
+        intentEnvio.putExtra("usuario",cedula);
+        intentEnvio.putExtra("nombre",nombreUsuario);
+        intentEnvio.putExtra("idpersonal",idPersonal);
+        startActivity(intentEnvio);
+
+    }
+
+
+    String mCurrentPhotoPath;
+    private File createImageFile() throws IOException {
+
+        //File miFile=new File(Environment.getExternalStorageDirectory(),Utils.DIRECTORIO_IMAGEN);
         // Create an image file name
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         String imageFileName = "Backup_" + timeStamp + "_";
         File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
         File image = File.createTempFile(imageFileName, ".jpg", storageDir);
-
         mCurrentPhotoPath = image.getAbsolutePath();
         return image;
+
+
+
+
     }
 
-    public void tomarFoto(View v) {
+    //Método para tomar foto y crear el archivo
+    static final int REQUEST_TAKE_PHOTO = 1;
+    public void tomarFoto(View view) {
+
+
+
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
             // Create the File where the photo should go
             File photoFile = null;
             try {
                 photoFile = createImageFile();
+
+                String toFile = "D:\\imgsisplace";
+                copyFile(photoFile.getAbsolutePath(),toFile);
+                Toast.makeText(getApplicationContext(), "Error"+photoFile.getAbsolutePath(),Toast.LENGTH_SHORT).show();
+
+
             } catch (IOException ex) {
                 // Error occurred while creating the File
-                Toast.makeText(getApplicationContext(), "Error"+ex.getMessage(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Error"+ex.getMessage(),Toast.LENGTH_LONG).show();
             }
             // Continue only if the File was successfully created
             if (photoFile != null) {
@@ -107,199 +140,44 @@ public class ActualizarFotoActivity extends AppCompatActivity {
         }
     }
 
-    public void guardarFoto(View v){
-        Toast.makeText(getApplicationContext(), "Guardar la foto", Toast.LENGTH_SHORT).show();
-    }
-
-    public void tomarFotoTutor(View v){
-        File miFile=new File(Environment.getExternalStorageDirectory(),Utils.DIRECTORIO_IMAGEN);
-        boolean isCreada=miFile.exists();
-
-        if(isCreada==false){
-            isCreada=miFile.mkdirs();
-        }
-
-        if(isCreada==true){
-            Long consecutivo= System.currentTimeMillis()/1000;
-            String nombre=consecutivo.toString()+".jpg";
-
-            path=Environment.getExternalStorageDirectory()+File.separator+Utils.DIRECTORIO_IMAGEN
-                    +File.separator+nombre;//indicamos la ruta de almacenamiento
-
-            Toast.makeText(getApplicationContext(), "Path imagen "+path, Toast.LENGTH_SHORT).show();
-            fileImagen=new File(path);
-
-            Intent intent=new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(fileImagen));
-
-            ////
-            if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.N)
-            {
-                String authorities=getApplication().getPackageName()+".provider";
-                Uri imageUri= FileProvider.getUriForFile(getApplicationContext(),authorities,fileImagen);
-                intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
-            }else
-            {
-                intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(fileImagen));
-            }
-            startActivityForResult(intent,Utils.COD_FOTO);
-
-            ////
-
-        }
-    }
-
+    //Método para mostrar vista previa en un imageview de la foto tomada
+    //static final int REQUEST_IMAGE_CAPTURE = 1;
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode ==1 ) {
+        if(requestCode == 1){
             File imgPhoto = new File(mCurrentPhotoPath);
             if(imgPhoto.exists()){
                 Bitmap myBitman = BitmapFactory.decodeFile(imgPhoto.getAbsolutePath());
+                //ImageView myImage = (ImageView)findViewById(R.id.imgView);
                 campoImagen.setImageBitmap(myBitman);
             }
         }
+
     }
-/*
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-
-        switch (requestCode){
-            case Utils.COD_SELECCIONA:
-                Uri miPath=data.getData();
-                campoImagen.setImageURI(miPath);
-
-                try {
-                    bitmap=MediaStore.Images.Media.getBitmap(getApplication().getContentResolver(),miPath);
-                    campoImagen.setImageBitmap(bitmap);
-                } catch (IOException e) {
-                    e.printStackTrace();
+    public boolean copyFile(String fromFile, String toFile) {
+        File origin = new File(fromFile);
+        File destination = new File(toFile);
+        if (origin.exists()) {
+            try {
+                InputStream in = new FileInputStream(origin);
+                OutputStream out = new FileOutputStream(destination);
+                // We use a buffer for the copy (Usamos un buffer para la copia).
+                byte[] buf = new byte[1024];
+                int len;
+                while ((len = in.read(buf)) > 0) {
+                    out.write(buf, 0, len);
                 }
-
-                break;
-            case Utils.COD_FOTO:
-                MediaScannerConnection.scanFile(getApplicationContext(), new String[]{path}, null,
-                        new MediaScannerConnection.OnScanCompletedListener() {
-                            @Override
-                            public void onScanCompleted(String path, Uri uri) {
-                                Log.i("Path",""+path);
-                            }
-                        });
-
-                bitmap= BitmapFactory.decodeFile(path);
-                campoImagen.setImageBitmap(bitmap);
-
-                break;
-        }
-        bitmap=redimensionarImagen(bitmap,600,800);
-    }
-*/
-    private Bitmap redimensionarImagen(Bitmap bitmap, float anchoNuevo, float altoNuevo) {
-
-        int ancho=bitmap.getWidth();
-        int alto=bitmap.getHeight();
-
-        if(ancho>anchoNuevo || alto>altoNuevo){
-            float escalaAncho=anchoNuevo/ancho;
-            float escalaAlto= altoNuevo/alto;
-
-            Matrix matrix=new Matrix();
-            matrix.postScale(escalaAncho,escalaAlto);
-
-            return Bitmap.createBitmap(bitmap,0,0,ancho,alto,matrix,false);
-
-        }else{
-            return bitmap;
-        }
-
-    }
-
-    //PERMISOS
-    private boolean solicitaPermisosVersionesSuperiores() {
-        if (Build.VERSION.SDK_INT<Build.VERSION_CODES.M){//validamos si estamos en android menor a 6 para no buscar los permisos
-            return true;
-        }
-
-        //validamos si los permisos ya fueron aceptados
-        if((getApplicationContext().checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)== PackageManager.PERMISSION_GRANTED)&&getApplicationContext().checkSelfPermission(Manifest.permission.CAMERA)==PackageManager.PERMISSION_GRANTED){
-            return true;
-        }
-
-
-        if ((shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)||(shouldShowRequestPermissionRationale(Manifest.permission.CAMERA)))){
-            cargarDialogoRecomendacion();
-        }else{
-            requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA}, Utils.MIS_PERMISOS);
-        }
-
-        return false;//implementamos el que procesa el evento dependiendo de lo que se defina aqui
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode==Utils.MIS_PERMISOS){
-            if(grantResults.length==2 && grantResults[0]==PackageManager.PERMISSION_GRANTED && grantResults[1]==PackageManager.PERMISSION_GRANTED){//el dos representa los 2 permisos
-                Toast.makeText(getApplicationContext(),"Permisos aceptados",Toast.LENGTH_SHORT);
-                campoImagen.setEnabled(true);//se vincula el evento a la imagen
+                in.close();
+                out.close();
+                return true;
+            } catch (IOException ioe) {
+                ioe.printStackTrace();
+                return false;
             }
-        }else{
-            solicitarPermisosManual();
+        } else {
+            return false;
         }
     }
-
-
-    private void solicitarPermisosManual() {
-        final CharSequence[] opciones={"si","no"};
-        final AlertDialog.Builder alertOpciones=new AlertDialog.Builder(getApplicationContext());//estamos en fragment
-        alertOpciones.setTitle("¿Desea configurar los permisos de forma manual?");
-        alertOpciones.setItems(opciones, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                if (opciones[i].equals("si")){
-                    Intent intent=new Intent();
-                    intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-                    Uri uri=Uri.fromParts("package",getApplicationContext().getPackageName(),null);
-                    intent.setData(uri);
-                    startActivity(intent);
-                }else{
-                    Toast.makeText(getApplicationContext(),"Los permisos no fueron aceptados",Toast.LENGTH_SHORT).show();
-                    dialogInterface.dismiss();
-                }
-            }
-        });
-        alertOpciones.show();
-    }
-
-
-    private void cargarDialogoRecomendacion() {
-        AlertDialog.Builder dialogo=new AlertDialog.Builder(getApplicationContext());
-        dialogo.setTitle("Permisos Desactivados");
-        dialogo.setMessage("Debe aceptar los permisos para el correcto funcionamiento de la App");
-
-        dialogo.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.M)
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.CAMERA},100);
-            }
-        });
-        dialogo.show();
-    }
-
-
-    public void irInicio(View v){
-        Intent intentEnvio= new Intent(ActualizarFotoActivity.this, InicioActivity.class);
-        intentEnvio.putExtra("usuario",cedula);
-        intentEnvio.putExtra("nombre",nombreUsuario);
-        intentEnvio.putExtra("idpersonal",idPersonal);
-        startActivity(intentEnvio);
-
-    }
-
-
 }
