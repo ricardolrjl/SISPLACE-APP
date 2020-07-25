@@ -65,6 +65,7 @@ public class AdminPersonalActivity extends AppCompatActivity implements Response
         rutalogo=datoRecibir.getString("logo");
         idPersonal=datoRecibir.getInt("idpersonal");
 
+
         user.setText(nombreUsuario);
 
         String urlImagen=Utils.DIRECCION_IP+rutalogo;
@@ -144,7 +145,7 @@ public class AdminPersonalActivity extends AppCompatActivity implements Response
                 @Override
                 public void onClick(View view) {
                 //    Toast.makeText(getApplicationContext(), "Seleccionó "+listaEventos.get(recyclerAdministracionPersonal.getChildAdapterPosition(view)).getLatitud(), Toast.LENGTH_SHORT).show();
-                    seleccionEvento(listaEventos.get(recyclerAdministracionPersonal.getChildAdapterPosition(view)).getDescripcion(),listaEventos.get(recyclerAdministracionPersonal.getChildAdapterPosition(view)).getIdEvento(),listaEventos.get(recyclerAdministracionPersonal.getChildAdapterPosition(view)).getLongitud(),listaEventos.get(recyclerAdministracionPersonal.getChildAdapterPosition(view)).getLatitud());
+                    seleccionEvento(listaEventos.get(recyclerAdministracionPersonal.getChildAdapterPosition(view)).getDescripcion(),listaEventos.get(recyclerAdministracionPersonal.getChildAdapterPosition(view)).getIdEvento(),listaEventos.get(recyclerAdministracionPersonal.getChildAdapterPosition(view)).getLongitud(),listaEventos.get(recyclerAdministracionPersonal.getChildAdapterPosition(view)).getLatitud(),listaEventos.get(recyclerAdministracionPersonal.getChildAdapterPosition(view)).getDireccion());
                 }
             });
 
@@ -157,8 +158,8 @@ public class AdminPersonalActivity extends AppCompatActivity implements Response
         }
     }
 
-    public void seleccionEvento(String nombreEvento,int idEvento,Double longitud,Double latitud){
-        Intent intentEnvio= new Intent(AdminPersonalActivity.this, UbicacionActivity.class);
+    public void seleccionEvento(String nombreEvento,int idEvento,Double longitud,Double latitud,String direccion){
+        Intent intentEnvio= new Intent(AdminPersonalActivity.this, UbicacionEventoActivity.class);
         intentEnvio.putExtra("usuario",cedula);
         intentEnvio.putExtra("nombre",nombreUsuario);
         intentEnvio.putExtra("idevento",idEvento);
@@ -166,6 +167,7 @@ public class AdminPersonalActivity extends AppCompatActivity implements Response
         intentEnvio.putExtra("nombreEvento",nombreEvento);
         intentEnvio.putExtra("longitud",longitud);
         intentEnvio.putExtra("latitud",latitud);
+        intentEnvio.putExtra("direccion",direccion);
         startActivity(intentEnvio);
       //  Toast.makeText(getApplicationContext(),"Seleccionó "+latitud,Toast.LENGTH_SHORT).show();
     }

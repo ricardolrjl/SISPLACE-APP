@@ -28,5 +28,6 @@
     <string name="correo">Correo Electrónico</string>
     <string name="cedula">Cédula</string>
     <string name="actualizar">Actualizar</string>
+    <string name="title_activity_ubicacion_evento">Map</string>
 
 </resources>

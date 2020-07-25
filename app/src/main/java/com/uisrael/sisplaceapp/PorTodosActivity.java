@@ -110,7 +110,7 @@ public class PorTodosActivity extends AppCompatActivity implements Response.List
                 @Override
                 public void onClick(View view) {
             //        Toast.makeText(getApplicationContext(), "Seleccionó "+listaEventos.get(recyclerEventos.getChildAdapterPosition(view)).getDireccion(), Toast.LENGTH_SHORT).show();
-                    seleccionAdministracion(listaEventos.get(recyclerEventos.getChildAdapterPosition(view)).getDescripcion(),listaEventos.get(recyclerEventos.getChildAdapterPosition(view)).getIdEvento(),listaEventos.get(recyclerEventos.getChildAdapterPosition(view)).getLongitud(),listaEventos.get(recyclerEventos.getChildAdapterPosition(view)).getLatitud());
+                    seleccionAdministracion(listaEventos.get(recyclerEventos.getChildAdapterPosition(view)).getDescripcion(),listaEventos.get(recyclerEventos.getChildAdapterPosition(view)).getIdEvento(),listaEventos.get(recyclerEventos.getChildAdapterPosition(view)).getLongitud(),listaEventos.get(recyclerEventos.getChildAdapterPosition(view)).getLatitud(),listaEventos.get(recyclerEventos.getChildAdapterPosition(view)).getDireccion());
                 }
             });
 
@@ -123,8 +123,8 @@ public class PorTodosActivity extends AppCompatActivity implements Response.List
         }
     }
 
-    public void seleccionAdministracion(String nombreEvento,int idEvento,Double longitud,Double latitud){
-        Intent intentEnvio= new Intent(PorTodosActivity.this, UbicacionActivity.class);
+    public void seleccionAdministracion(String nombreEvento,int idEvento,Double longitud,Double latitud,String direccion){
+        Intent intentEnvio= new Intent(PorTodosActivity.this, UbicacionEventoActivity.class);
         intentEnvio.putExtra("usuario",cedula);
         intentEnvio.putExtra("nombre",nombreUsuario);
         intentEnvio.putExtra("idevento",idEvento);
@@ -132,6 +132,7 @@ public class PorTodosActivity extends AppCompatActivity implements Response.List
         intentEnvio.putExtra("nombreEvento",nombreEvento);
         intentEnvio.putExtra("longitud",longitud);
         intentEnvio.putExtra("latitud",latitud);
+        intentEnvio.putExtra("direccion",direccion);
         startActivity(intentEnvio);
     //    Toast.makeText(getApplicationContext(),"Seleccionó "+nombreEvento,Toast.LENGTH_SHORT).show();
     }
