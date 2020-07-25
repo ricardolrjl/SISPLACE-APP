@@ -38,6 +38,7 @@ public class UbicacionActivity extends AppCompatActivity {
 
         user=findViewById(R.id.tvUsuario);
         txtLatitud=findViewById(R.id.txtLatitud);
+        txtNombreEvento = findViewById(R.id.txtNombreEvento);
         txtLongitud=findViewById(R.id.txtLongitud);
         datoRecibir=getIntent().getExtras();
         cedula=datoRecibir.getString("usuario");
