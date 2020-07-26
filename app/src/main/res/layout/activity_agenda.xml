@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:background="#367FA9"
     android:orientation="vertical"
+    android:src="@drawable/camara"
     tools:context=".AgendaActivity">
 
 
@@ -20,29 +21,16 @@
         android:textSize="16sp"
         android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/textView4"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:text="@string/seleccione"
-        android:textColor="#000000"
-        android:layout_marginTop="10dp"
-        android:textSize="16sp"
-        android:textStyle="bold" />
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="370dp"
-        android:layout_marginTop="30dp">
+        android:layout_height="518dp">
 
         <LinearLayout
             android:id="@+id/linearLayout"
             android:layout_width="183dp"
-            android:layout_height="424dp"
-            android:orientation="vertical"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
 
             <ImageView
                 android:id="@+id/imageView4"
@@ -55,15 +43,21 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/linearLayout2"
-            android:layout_width="200dp"
-            android:layout_height="429dp"
-            android:layout_marginStart="196dp"
-            android:layout_marginLeft="196dp"
-            android:orientation="vertical"
-            app:layout_constraintStart_toStartOf="@+id/linearLayout"
-            app:layout_constraintTop_toTopOf="@+id/linearLayout">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
 
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center_horizontal"
+                android:text="@string/seleccione"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
             <ImageButton
                 android:id="@+id/imbBtnFechas"
@@ -78,12 +72,10 @@
                 android:id="@+id/textView8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/fechas"
                 android:layout_gravity="center_horizontal"
+                android:text="@string/fechas"
                 android:textColor="#000000"
-                android:textStyle="bold"
-                />
-
+                android:textStyle="bold" />
 
             <ImageButton
                 android:id="@+id/imgBtnAdministracion"
@@ -98,12 +90,11 @@
                 android:id="@+id/textView9"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/administracion"
-
                 android:layout_gravity="center_horizontal"
+
+                android:text="@string/administracion"
                 android:textColor="#000000"
-                android:textStyle="bold"
-               />
+                android:textStyle="bold" />
 
             <ImageButton
                 android:id="@+id/imgBtnTodos"
@@ -114,25 +105,33 @@
                 android:onClick="seleccionTodos"
                 app:srcCompat="@drawable/todos" />
 
-
-
             <TextView
                 android:id="@+id/textView10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
                 android:text="@string/todos"
                 android:textColor="#000000"
-                android:textStyle="bold"
-                android:layout_gravity="center_horizontal" />
+                android:textStyle="bold" />
         </LinearLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <ImageButton
-        android:id="@+id/imgBtnInicio"
-        android:layout_width="63dp"
-        android:layout_height="70dp"
-        android:layout_gravity="center_horizontal"
-        android:onClick="irInicio"
-        app:srcCompat="@drawable/inicio" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:hapticFeedbackEnabled="false"
+        android:orientation="vertical">
+
+        <ImageButton
+            android:id="@+id/imgBtnInicio"
+            android:layout_width="63dp"
+            android:layout_height="70dp"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:foregroundGravity="right"
+            android:onClick="irInicio"
+            app:srcCompat="@drawable/inicio" />
+    </LinearLayout>
 
 </LinearLayout>
