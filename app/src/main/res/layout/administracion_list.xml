@@ -20,7 +20,7 @@
         <ImageView
             android:id="@+id/idImagenAdmin"
             android:layout_width="match_parent"
-            android:layout_height="35dp"
+            android:layout_height="50dp"
             android:background="#FFFEFE"
             android:src="@drawable/usuarioblue" />
     </LinearLayout>
