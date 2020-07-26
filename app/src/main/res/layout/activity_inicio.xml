@@ -41,12 +41,13 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="191dp"
-        android:gravity="center_horizontal|center_vertical">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:gravity="center_horizontal">
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_gravity="center_horizontal"
             android:orientation="vertical">
 
@@ -54,8 +55,7 @@
                 android:id="@+id/imgBtnAgenda"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:layout_marginStart="52dp"
-                android:layout_marginEnd="32dp"
+
                 android:onClick="seleccionAgenda"
                 app:srcCompat="@drawable/agenda" />
 
@@ -84,7 +84,7 @@
                 android:id="@+id/imgBtnInformacion"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:layout_marginEnd="32dp"
+
                 android:onClick="seleccionInformacion"
                 app:srcCompat="@drawable/informacion" />
 
@@ -93,6 +93,7 @@
                 android:layout_width="135dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
+                android:gravity="center_horizontal"
                 android:text="@string/informacion"
                 android:textColor="#000000"
                 android:textSize="18sp"
@@ -117,7 +118,7 @@
                 android:id="@+id/textView7"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="37dp"
+
                 android:gravity="center_horizontal"
                 android:text="@string/sitios"
                 android:textColor="#000000"
