@@ -10,9 +10,9 @@
 
         <ImageView
             android:id="@+id/idImagenAdmin"
-            android:layout_width="200dp"
-            android:layout_height="170dp"
-           android:layout_marginLeft="20dp"
+            android:layout_width="161dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
             android:src="@drawable/usuarioblue" />
 
         <LinearLayout
