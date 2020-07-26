@@ -1,13 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#367FA9"
-    android:orientation="vertical"
-    android:src="@drawable/camara"
-    tools:context=".AgendaActivity">
+    android:visibility="visible"
+    tools:context=".AgendaActivity"
+    tools:visibility="visible">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#367FA9"
+        android:orientation="vertical"
+        android:weightSum="10">
+
 
 
     <TextView
@@ -142,5 +150,5 @@
             android:onClick="irInicio"
             app:srcCompat="@drawable/inicio" />
     </LinearLayout>
-
-</LinearLayout>
+    </LinearLayout>
+</ScrollView>
