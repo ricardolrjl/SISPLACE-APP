@@ -5,102 +5,152 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#367FA9"
+    android:gravity="center_vertical"
     android:orientation="vertical"
     tools:context=".InformacionPersonalActivity">
 
-     <ImageView
-        android:id="@+id/imagenId"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="20dp"
-        android:src="@drawable/usuarioblue"
-        android:layout_gravity="center_horizontal"/>
-    <TextView
-        android:id="@+id/tvUsuario"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="519dp"
+        android:layout_gravity="center_vertical"
+        android:layout_margin="30dp"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/imagenId"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/usuarioblue" />
+
+        <TextView
+            android:id="@+id/tvUsuario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center_horizontal"
+            android:hapticFeedbackEnabled="false"
+            android:text="@string/cedula"
+            android:textColor="#000000"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvNombre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:gravity="center_horizontal"
+            android:text="Nombre"
+            android:textColor="#000000"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Fecha de Nacimiento:" />
+
+        <TextView
+            android:id="@+id/tvFechaNacimiento"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:text="@string/fechaNac"
+            android:textColor="#000000"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Direccion:" />
+
+        <EditText
+            android:id="@+id/etDireccion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="@string/direccion"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Telefono Convencional:" />
+
+        <EditText
+            android:id="@+id/etTelefono"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="@string/convencional"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/textView14"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Celular:" />
+
+        <EditText
+            android:id="@+id/etCelular"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="@string/celular"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Correo:" />
+
+        <EditText
+            android:id="@+id/etCorreo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="@string/correo"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/btnActualizar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:onClick="actualizarInformacion"
+            android:text="@string/actualizar" />
+
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:gravity="center_horizontal"
-        android:text="@string/cedula"
-        android:textColor="#000000"
-        android:textSize="14sp"
-        android:textStyle="bold" />
-    <TextView
-        android:id="@+id/tvNombre"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:gravity="center_horizontal"
-        android:text="Nombre"
-        android:textColor="#000000"
-        android:textSize="14sp"
-        android:textStyle="bold" />
+        android:gravity="center_vertical"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tvFechaNacimiento"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:text="@string/fechaNac"
-        android:layout_marginLeft="10dp"
-        android:textColor="#000000"
-        android:textSize="14sp" />
-
-    <EditText
-    android:id="@+id/etDireccion"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginLeft="10dp"
-    android:ems="10"
-    android:textSize="14sp"
-    android:inputType="textPersonName"
-    android:text="@string/direccion" />
-
-    <EditText
-        android:id="@+id/etTelefono"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:textSize="14sp"
-        android:text="@string/convencional" />
-
-    <EditText
-        android:id="@+id/etCelular"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:textSize="14sp"
-        android:text="@string/celular" />
-
-    <EditText
-        android:id="@+id/etCorreo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:textSize="14sp"
-        android:text="@string/correo" />
-
-    <Button
-        android:id="@+id/btnActualizar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10dp"
-        android:onClick="actualizarInformacion"
-        android:text="@string/actualizar" />
-
-    <ImageButton
-        android:id="@+id/imgBtnInicioAgenda"
-        android:layout_width="89dp"
-        android:layout_height="72dp"
-        android:layout_gravity="center_horizontal"
-        android:onClick="irInicio"
-        app:srcCompat="@drawable/inicio" />
+        <ImageButton
+            android:id="@+id/imgBtnInicioAgenda"
+            android:layout_width="89dp"
+            android:layout_height="72dp"
+            android:layout_gravity="center_horizontal"
+            android:onClick="irInicio"
+            app:srcCompat="@drawable/inicio" />
+    </LinearLayout>
 
 </LinearLayout>
