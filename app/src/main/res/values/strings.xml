@@ -29,5 +29,7 @@
     <string name="cedula">Cédula</string>
     <string name="actualizar">Actualizar</string>
     <string name="title_activity_ubicacion_evento">Map</string>
+    <string name="title_activity_mapa">Map</string>
+    <string name="title_activity_mapas">Map</string>
 
 </resources>

@@ -54,5 +54,8 @@ public class UbicacionEventoActivity extends FragmentActivity implements OnMapRe
         LatLng evento = new LatLng(latitud, longitud);
         mMap.addMarker(new MarkerOptions().position(evento).title(nombreEvento).snippet(direccionEvento));
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(evento,15));
+
+
+
     }
 }

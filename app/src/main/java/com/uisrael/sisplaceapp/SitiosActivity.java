@@ -7,11 +7,14 @@ import android.content.Intent;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Bundle;
+import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SitiosActivity extends AppCompatActivity {
@@ -19,6 +22,7 @@ public class SitiosActivity extends AppCompatActivity {
     String cedula,nombreUsuario;
     Bundle datoRecibir;
     Integer idPersonal;
+    ImageButton imw;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +43,8 @@ public class SitiosActivity extends AppCompatActivity {
         nombreUsuario=datoRecibir.getString("nombre");
         idPersonal=datoRecibir.getInt("idpersonal");
         user.setText(nombreUsuario);
+
+        imw=findViewById(R.id.imgBtnWhatsapp);
     }
 
     public void irFacebook(View v){
@@ -64,7 +70,7 @@ public class SitiosActivity extends AppCompatActivity {
     }
 
     public void irYoutube(View v){
-        String YoutubeId = "yt://UCMN0nU_su5u17xqHnhs2JSQ";
+        String YoutubeId = "yt://MN0nU_su5u17xqHnhs2JSQ";
         String urlPage = "https://www.youtube.com/channel/UCUguziC608WwBWWSkcJZX1Q";
 
         try {
@@ -98,5 +104,28 @@ public class SitiosActivity extends AppCompatActivity {
             //Abre url de pagina.
             startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(urlPage)));
         }
+    }
+
+    public void irWhatsapp(View v){
+/*
+        try {
+            Uri uri = Uri.parse("smsto:"+"+593987342976");
+            Intent i = new Intent(Intent.ACTION_SENDTO, uri);
+            i.setPackage("web.whatsapp.com");
+            startActivity(i);
+        }catch (Exception e){
+            Toast.makeText(getApplicationContext(),"Aplicación no instalada",Toast.LENGTH_SHORT).show();
+        }
+
+*/
+
+
+
+        Uri sms_uri = Uri.parse("smsto:+" + "+593992850775");
+        Intent sms_intent = new Intent(Intent.ACTION_SENDTO, sms_uri);
+        sms_intent.putExtra("sms_body", "Necesito ayuda ");
+        startActivity(sms_intent);
+
+
     }
 }

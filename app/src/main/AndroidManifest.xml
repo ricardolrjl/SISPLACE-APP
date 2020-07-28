@@ -5,7 +5,7 @@
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
-         location permissions for the 'MyLocation' functionality.
+         location permissions for the "MyLocation" functionality.
     -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
@@ -17,6 +17,8 @@
     <uses-permission android:name="android.permission.CAMERA" /> <!-- - para usar la camara desde la App -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- escribir en memoria para guardar las fotos -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <uses-permission android:name="android.permission.SEND_SMS"/>
 
     <application
         android:allowBackup="true"
@@ -35,55 +37,48 @@
              sign the APK for publishing.
              You can define the keys for the debug and release targets in src/debug/ and src/release/.
         -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+        <activity
+            android:name=".activity_mapas"
+            android:label="@string/title_activity_mapas"></activity>
+        <activity
+            android:name=".UbicacionEventoActivity"
+            android:label="@string/title_activity_ubicacion_evento" />
+        <activity android:name=".ActualizarFotoActivity" />
+        <activity android:name=".InformacionPersonalActivity" />
+        <activity android:name=".UbicacionActivity" />
+        <activity android:name=".AdminPersonalActivity" />
+        <activity android:name=".PorTodosActivity" />
+        <activity android:name=".PorAdministracionActivity" />
+        <activity android:name=".PorFechasActivity" />
+        <activity android:name=".SitiosActivity" />
+        <activity android:name=".InformacionActivity" />
+        <activity android:name=".AgendaActivity" />
+        <activity android:name=".InicioActivity" />
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
         <meta-data
-            android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version" />
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value=".InicioActivity" />
 
-        <!--
-                <meta-data
-                    android:name="com.google.android.geo.API_KEY"
-                    android:value="@string/google_maps_key" />
-             -->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.uisrael.sisplaceapp.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_path" />
+        </provider>
+    </application>
 
-                <activity
-                    android:name=".UbicacionEventoActivity"
-                    android:label="@string/title_activity_ubicacion_evento"></activity>
-                <activity android:name=".ActualizarFotoActivity" />
-                <activity android:name=".InformacionPersonalActivity" />
-                <activity android:name=".UbicacionActivity" />
-                <activity android:name=".AdminPersonalActivity" />
-                <activity android:name=".PorTodosActivity" />
-                <activity android:name=".PorAdministracionActivity" />
-                <activity android:name=".PorFechasActivity" />
-                <activity android:name=".SitiosActivity" />
-                <activity android:name=".InformacionActivity" />
-                <activity android:name=".AgendaActivity" />
-                <activity android:name=".InicioActivity" />
-                <activity android:name=".MainActivity">
-                    <intent-filter>
-                        <action android:name="android.intent.action.MAIN" />
-
-                        <category android:name="android.intent.category.LAUNCHER" />
-                    </intent-filter>
-                </activity>
-
-                <meta-data
-                    android:name="android.support.PARENT_ACTIVITY"
-                    android:value=".InicioActivity" />
-
-
-
-                <provider
-                    android:name="androidx.core.content.FileProvider"
-                    android:authorities="com.uisrael.sisplaceapp.fileprovider"
-                    android:exported="false"
-                    android:grantUriPermissions="true">
-                    <meta-data
-                        android:name="android.support.FILE_PROVIDER_PATHS"
-                        android:resource="@xml/file_path"></meta-data>
-                </provider>
-
-            </application>
-
-        </manifest>
+</manifest>
