@@ -225,19 +225,13 @@ public class ActualizarFotoActivity extends AppCompatActivity {
 
     String mCurrentPhotoPath;
     private File createImageFile() throws IOException {
-        File miFile=new File(Environment.getExternalStorageDirectory(),Utils.DIRECTORIO_IMAGEN);
-        boolean isCreada=miFile.exists();
-        if(isCreada==false){
-            isCreada=miFile.mkdirs();
-        }
-        Long consecutivo = System.currentTimeMillis() / 1000;
-        String nombre=consecutivo.toString()+".jpg";
-        path=Environment.getExternalStorageDirectory()+File.separator+Utils.DIRECTORIO_IMAGEN
-                +File.separator+nombre;//indicamos la ruta de almacenamiento
-        // Create an image file name
-        fileImagen=new File(path);
-        mCurrentPhotoPath = fileImagen.getAbsolutePath();
-         return fileImagen;
+
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String imageFileName = "Backup_" + timeStamp + "_";
+        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        File image = File.createTempFile(imageFileName, ".jpg", storageDir);
+        mCurrentPhotoPath = image.getAbsolutePath();
+        return image;
     }
 
     //Método para tomar foto y crear el archivo
