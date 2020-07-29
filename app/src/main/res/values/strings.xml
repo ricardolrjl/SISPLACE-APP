@@ -31,5 +31,9 @@
     <string name="title_activity_ubicacion_evento">Map</string>
     <string name="title_activity_mapa">Map</string>
     <string name="title_activity_mapas">Map</string>
+    <string name="fechadesde">Fecha Desde</string>
+    <string name="fechahasta">Fecha Hasta</string>
+    <string name="seleccionefechas">Ingrese rango de fechas</string>
+    <string name="buscar">Buscar</string>
 
 </resources>

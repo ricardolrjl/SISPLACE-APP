@@ -4,8 +4,10 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -43,10 +45,8 @@ public class MainActivity extends AppCompatActivity {
 
     public String devuelveClave(String usuario){
         String clave="";
-        //SANDRITA
         String ws = Utils.DIRECCION_IP+"rest/postmysql.php";
-        //RICARDO
-        //String ws = "http://192.168.100.26/rest/postpostgres.php";
+
 
         StrictMode.ThreadPolicy politica= new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(politica);
@@ -151,4 +151,23 @@ public class MainActivity extends AppCompatActivity {
 
         }
     }
+
+    public void recuperarClave(View v) {
+        String clave = devuelveClave(etUsuario.getText().toString().trim());
+        Intent intent = new Intent(Intent.ACTION_SEND);
+
+        // Defino los Strings Email, Asunto y Mensaje con la función putExtra
+        intent.putExtra(Intent.EXTRA_EMAIL,
+                new String[] { "sandritasoledad73@gmail.com" });
+        intent.putExtra(Intent.EXTRA_SUBJECT, "Recuperacion clave");
+        intent.putExtra(Intent.EXTRA_TEXT, clave);
+
+        // Establezco el tipo de Intent
+        intent.setType("message/rfc822");
+
+        // Lanzo el selector de cliente de Correo
+        startActivity(
+                Intent.createChooser(intent,"Elije un cliente de Correo:"));
+    }
+
 }

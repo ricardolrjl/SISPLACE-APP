@@ -176,4 +176,9 @@ public class InicioActivity extends AppCompatActivity implements Response.Listen
 
     }
 
+    public void salir(View v){
+        Intent intentEnvio= new Intent(InicioActivity.this,MainActivity.class);
+        startActivity(intentEnvio);
+    }
+
 }
