@@ -10,16 +10,12 @@
     android:visibility="visible"
     tools:context=".MainActivity"
     tools:visibility="visible">
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#367FA9"
         android:orientation="vertical"
         android:weightSum="10">
-
-
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
