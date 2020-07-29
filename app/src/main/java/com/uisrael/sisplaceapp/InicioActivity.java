@@ -8,6 +8,7 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -32,6 +33,7 @@ public class InicioActivity extends AppCompatActivity implements Response.Listen
     TextView user;
     String cedula,nombreUsuario;
     Integer idPersonal;
+
 
     Bundle datoRecibir;
     ImageButton btnAgenda,btnInformacion,btnSitios;
@@ -180,5 +182,6 @@ public class InicioActivity extends AppCompatActivity implements Response.Listen
         Intent intentEnvio= new Intent(InicioActivity.this,MainActivity.class);
         startActivity(intentEnvio);
     }
+
 
 }
