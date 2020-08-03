@@ -118,13 +118,21 @@ public class SitiosActivity extends AppCompatActivity {
         }
 
 */
+try {
+    Uri sms_uri = Uri.parse("smsto:+" + "593992850775");
+    Intent sms_intent = new Intent(Intent.ACTION_SENDTO, sms_uri);
+    sms_intent.putExtra("sms_body", "Mi nombre es "+nombreUsuario+" ,necesito ayuda con ");
+    startActivity(sms_intent);
+}
+catch (Exception e){
+    Uri sms_uri = Uri.parse("smsto:+" + "593992850775");
+    Intent sms_intent = new Intent(Intent.ACTION_SENDTO, sms_uri);
+    sms_intent.putExtra("sms_body", "Mi nombre es "+nombreUsuario+" ,necesito ayuda con ");
+    startActivity(sms_intent);
+}
 
 
 
-        Uri sms_uri = Uri.parse("smsto:+" + "+593992850775");
-        Intent sms_intent = new Intent(Intent.ACTION_SENDTO, sms_uri);
-        sms_intent.putExtra("sms_body", "Necesito ayuda ");
-        startActivity(sms_intent);
 
 
     }
